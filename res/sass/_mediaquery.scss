@@ -1,0 +1,18 @@
+// iPhone 4 lower
+@include mediaquery(-1, 319);
+
+// iPhone 4/5
+@include mediaquery(320, 359);
+
+// Google Nexus 5 / Samsung Galaxy Note2/3 & S3/S4  xiaomi 3/4 hongmi Note3
+@include mediaquery(360, 374);
+
+// iPhone 6
+@include mediaquery(375, 383);
+
+@include mediaquery(384, 399);
+
+@include mediaquery(400, 413);
+
+// iPhone 6 Plus
+@include mediaquery(414, -1);

@@ -1,0 +1,69 @@
+//全局布局样式
+body{
+  margin: 0;
+  font-size: 0.28rem;
+  color: #232323;
+}
+.wrapper{
+  max-width: 750px;
+  width: 100%;
+  margin: 0 auto;
+}
+.header{
+  font-size: .30rem;
+  position: fixed;
+  z-index: 1030;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  max-width: 750px;
+  height: 1rem;
+  padding: .34rem .3rem;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  color: #fffeff;
+  background: #f22b3e;
+  .header-title{
+    text-align: center;
+  }
+}
+.menu{
+  font-size: .28rem;
+  position: fixed;
+  z-index: 1030;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  max-width: 750px;
+  border-top: 1px solid #EEEEEE;
+  height: 1rem;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  color: #232323;
+  background: #fffeff;
+  padding-top: .15rem;
+
+  li{
+    width: 25%;
+    float: left;
+    text-align: center;
+
+    .fa{
+      color: #e2e2e2;
+      font-size: 0.4rem;
+    }
+  }
+  .active>a{
+    color: #FF0000;
+    .fa{
+      color: #FF0000;
+    }
+  }
+
+}
+.fixed-header{
+  margin-top: 1rem !important;
+}
+.fixed-menu{
+  margin-bottom: 1rem !important;
+}
