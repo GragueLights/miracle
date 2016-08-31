@@ -2,6 +2,9 @@
 namespace Home\Controller;
 use Think\Controller;
 class IndexController extends BaseController {
+    public function index(){
+        header("location:/club");
+    }
     /**
      *社团活动
      */

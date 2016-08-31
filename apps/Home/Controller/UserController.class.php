@@ -17,7 +17,6 @@ class UserController extends BaseController {
     public function register(){
         $this->assign('pageTitle','用户注册');
         $this->display();
-
     }
 
     /**

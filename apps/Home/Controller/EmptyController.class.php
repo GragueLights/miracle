@@ -7,7 +7,7 @@ use Think\Controller;
  * Class EmptyController
  * @package Home\Controller
  */
-class EmptyController extends Controller {
+class EmptyController extends BaseController {
 
     public function index(){
         $this->redirect('Public/404');

@@ -12,6 +12,6 @@ return array(
 
 
 
-    'LOAD_EXT_CONFIG' => 'route',//加载路由配置
+    'LOAD_EXT_CONFIG' => 'route,database',//加载路由配置
 
 );
