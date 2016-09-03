@@ -10,7 +10,6 @@ class IndexController extends BaseController {
      */
     public function club(){
         $this->assign('pageTitle','社团活动');
-
         $this->display();
     }
 

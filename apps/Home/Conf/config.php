@@ -6,7 +6,6 @@ return array(
 		'__IMG__'    => __ROOT__ . '/res/images',
 		'__CSS__'    => __ROOT__ . '/res/css',
 		'__JS__'     => __ROOT__ . '/res/js',
-		'__MODULE__'=>__ROOT__.'res/module'
+		'__MODULE__'=>__ROOT__.'/res/module'
 	)  ,
-
 );

@@ -14,7 +14,6 @@
 
     }else if(path=='/me'){
         $(".menu .item-me").addClass("active");
-
     }
 })(window,document,window.$);
 

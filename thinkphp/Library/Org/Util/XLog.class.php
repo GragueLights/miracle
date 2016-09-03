@@ -20,7 +20,7 @@ class XLog
             return ;
         }
         $log = new Logger($class.'=>'.$fun);
-        $log->pushHandler(new StreamHandler('log/warn'.date('Ymd').'.log',Logger::WARNING));
+        $log->pushHandler(new StreamHandler('logs/warn'.date('Ymd').'.log',Logger::WARNING));
         $log->addWarning($warn);
     }
     static public function logError($class,$fun,$error){
@@ -28,7 +28,7 @@ class XLog
             return ;
         }
         $log = new Logger($class.'=>'.$fun);
-        $log->pushHandler(new StreamHandler('log/error'.date('Ymd').'.log',Logger::ERROR));
+        $log->pushHandler(new StreamHandler('logs/error'.date('Ymd').'.log',Logger::ERROR));
         $log->addError($error);
     }
     /**
@@ -42,7 +42,7 @@ class XLog
             return ;
         }
         $log = new Logger($class.'=>'.$fun);
-        $log->pushHandler(new StreamHandler('log/debug'.date('Ymd').'.log',Logger::DEBUG));
+        $log->pushHandler(new StreamHandler('logs/debug'.date('Ymd').'.log',Logger::DEBUG));
         $log->addDebug($debug);
     }
 
@@ -57,7 +57,7 @@ class XLog
             return ;
         }
         $log = new Logger($class.'=>'.$fun);
-        $log->pushHandler(new StreamHandler('log/apiUrl.log',Logger::INFO));
+        $log->pushHandler(new StreamHandler('logs/apiUrl.log',Logger::INFO));
         $log->addInfo($alert);
     }
 

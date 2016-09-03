@@ -1,1 +1,70 @@
 <extend name="Public/nomenu" />
+
+<block name="main">
+    <div class="login-wrapper">
+        用户名:<input id="tel" type="tel" style=""/>
+        密码:<input id="keyword" type="password"/>
+        <input type="hidden" id="refererUrl" val="{$refererUrl}"/>
+        <button id="login-btn" type="submit">登录</button>
+    </div>
+    <style>
+        input{
+            display: block;
+            height: .6rem;
+            border: 1px solid #FF0000;
+            padding: .1rem .2rem;
+        }
+        button{
+            padding: .1rem .2rem;
+            background-color: #FF0000;
+            outline: 0;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#tel").blur(function(){
+                var tel = $(this).val();
+                if(tel==''){
+                    return;
+                }
+                $.ajax({
+                    url:'/ajaxIsUserExist',
+                    type:'get',
+                    data:{
+                        tel:tel,
+                    },
+                    dataType:'json',
+                    success:function (data) {
+                        console.log(data);
+                    }
+                })
+            });
+
+            $("#login-btn").on('click',function (e) {
+                var tel = $('#tel').val();
+                var keyword = $('#keyword').val();
+                $.ajax({
+                    url:'/ajaxDoLogin',
+                    type:'post',
+                    data:{
+                        tel:tel,
+                        keyword:keyword
+                    },
+                    dataType:'json',
+                    success:function (data) {
+                        if(data.status==100){
+                            var refererUrl = $('#refererUrl').val();
+                            if(refererUrl!=''){
+                                window.location.href=refererUrl;
+                            }else{
+                                window.location.href='/club';
+                            }
+
+                        }
+                        console.log(data);
+                    }
+                })
+            })
+        })
+    </script>
+</block>
