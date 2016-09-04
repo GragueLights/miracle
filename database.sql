@@ -18,10 +18,10 @@ CREATE TABLE `micro_user` (
   `create_time` DATETIME NOT NULL COMMENT '注册时间',
   `update_time` DATETIME NOT NULL COMMENT '',
   PRIMARY KEY(`uid`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
-
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+--de9789254b9f6fd0854aed48abb587633555a0c9
 --测试数据
-INSERT INTO `micro_user` VALUES();
+INSERT INTO `micro_user` (`utel`,`uname`,`upwd`,`utype`,`create_time`,`update_time`) VALUES('18811708041','许小平','de9789254b9f6fd0854aed48abb587633555a0c9',1,'2016-09-04 10:00:00','2016-09-04 10:00:00');
 
 
 
