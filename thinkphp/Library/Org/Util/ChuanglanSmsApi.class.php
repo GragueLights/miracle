@@ -6,7 +6,8 @@
  * Time: 下午8:23
  */
 
-namespace ThirdApi;
+namespace Org\Util;
+
 /**
  * 创蓝短信验证码
  *

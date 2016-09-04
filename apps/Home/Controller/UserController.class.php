@@ -3,7 +3,8 @@ namespace Home\Controller;
 use Home\Model\UserModel;
 use Org\Util\XLog;
 use Think\Controller;
-use ThirdApi;
+use Org\Util\ChuanglanSmsApi;
+
 class UserController extends BaseController {
 
     //返回消息模板
@@ -25,6 +26,7 @@ class UserController extends BaseController {
      * 用户注册页面
      */
     public function register(){
+
         $this->assign('pageTitle','用户注册');
         $this->display();
     }
@@ -37,7 +39,6 @@ class UserController extends BaseController {
             header("location:/login");
             die;
         }
-        
         $this->assign('pageTitle','用户中心');
         $this->display();
     }
@@ -47,7 +48,19 @@ class UserController extends BaseController {
      * @param $tel 电话号码
      */
     public function ajaxGetCode($tel){
-        
+        if(!IS_GET||empty($tel)||isPhoneNum($tel)==0) return;
+        header('Content-Type:text/html;charset=utf-8');
+        $clapi  = new ChuanglanSmsApi();
+        $vcode = rand(100000,999999);
+        $msg ="您好，您的验证码是" . $vcode ;
+        $result = $clapi->sendSMS($tel, $msg,'true');
+        $result = $clapi->execResult($result);
+        if(isset($result[1]) && $result[1]==0){
+            $this->info['item']['vcode']=$vcode;
+            echo json_encode( $this->info);
+        }else{
+            echo "发送失败{$result[1]}";
+        }
     }
 
     /**
@@ -62,7 +75,7 @@ class UserController extends BaseController {
             return;
         }
         $user = new UserModel();
-        $result=$user->where("utel='%s' and upwd='%s'",array($tel,$keyword))->getField('uid,uname,utel,utype');
+        $result=$user->where("utel='%s' and upwd='%s'",array($tel,userSha1($keyword)))->getField('uid,uname,utel,utype');
         if(empty($result)){
             $this->info['msg']='error';
             $this->info['status']=-101;
@@ -82,10 +95,14 @@ class UserController extends BaseController {
         if(!IS_GET||empty($tel)) return;
         $user = new UserModel();
         $result=$user->where("utel='%s'",array($tel))->getField('utel');
-        if(empty($tel)){
+
+
+        if(empty($result)){
+            //用户不存在
             $this->info['msg']='error';
             $this->info['status']=-101;
         }else{
+            //用户存在,直接返回用户的号码
             $this->info['item']=$result;
         }
         echo  json_encode($this->info,true);
@@ -93,6 +110,40 @@ class UserController extends BaseController {
 
 
 
+    /**
+     * 用户注册接口
+     */
+    public function ajaxDoRegister(){
+        if(!IS_POST||empty($_POST['tel'])||empty($_POST['vcode'])||empty($_POST['keywords'])||empty($_POST['rekeywords'])){
+            return;
+        }
+        $tel = (string)$_POST['tel'];
+        $vcode=(string)$_POST['vcode'];
+        $keywords = (string)$_POST['keywords'];
+        $rekeywords = (string)$_POST['rekeywords'];
+        if($keywords!=$rekeywords) return;
+        $create_time = date('Y-m-d H:i:s',time());
+        $utype = 1;//用户类型
+        $newUser = array(
+            'utel'=>$tel,
+            'upwd'=>userSha1($keywords),
+            'uname'=>'',
+            'vcode'=>$vcode,
+            'utype'=>$utype,
+            'create_time'=>$create_time,
+            'update_time'=>$create_time,
+        );
+        $user = new UserModel();
+        $result = $user->add($newUser);
+        if($result!=false){
+            $this->info['item']['id']=$result;
+        }else{
+            $this->info['msg']='error';
+            $this->info['status']=-101;
+        }
+
+        echo json_encode($this->info);
+    }
     
 
 

@@ -23,7 +23,8 @@ return array(
         //ajax请求映射
         'ajaxDoLogin'=>'user/ajaxDoLogin',
         'ajaxIsUserExist'=>'user/ajaxIsUserExist',
-
+        'ajaxGetCode'=>'user/ajaxGetCode',
+        'ajaxDoRegister'=>'user/ajaxDoRegister',
     )
 
 );
