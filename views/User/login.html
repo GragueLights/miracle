@@ -2,25 +2,56 @@
 
 <block name="main">
     <div class="login-wrapper">
-        用户名:<input id="tel" type="tel" style=""/>
+        <!--用户名:<input id="tel" type="tel" style=""/>
         密码:<input id="keyword" type="password"/>
         <input type="hidden" id="refererUrl" val="{$refererUrl}"/>
-        <button id="login-btn" type="submit">登录</button>
+        <button id="login-btn" type="submit">登录</button>-->
+        <form id="login-form" name="login-form" method="POST" action="" autocomplete="off" novalidate="novalidate">
+            <div class="input-g-line">
+                <span class="input-g-title">用户名</span>
+                <div class="input-g">
+                    <input type="text" id="Mail" name="Mail" placeholder="请输入用户名" />
+
+                </div>
+                <div class="error"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="input-g-line">
+                <span class="input-g-title">密码</span>
+                <div class="input-g">
+                    <input type="text" id="Mail" name="Mail" placeholder="请输入密码" />
+                </div>
+                <div class="error"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="input-g-line">
+
+                <div class="input-g currentbtn">
+                    <a class="register_btn" id="register_btn">登录</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </form>
     </div>
     <style>
-        input{
+        .login-wrapper {
+            margin-top: 1rem;
+        }
+        
+        input {
             display: block;
             height: .6rem;
             border: 1px solid #FF0000;
             padding: .1rem .2rem;
         }
-        button{
+        
+        button {
             padding: .1rem .2rem;
             background-color: #FF0000;
             outline: 0;
         }
     </style>
-    <script>
+    <!--<script>
         $(document).ready(function () {
             $("#tel").blur(function(){
                 var tel = $(this).val();
@@ -54,6 +85,7 @@
                     success:function (data) {
                         if(data.status==100){
                             var refererUrl = $('#refererUrl').val();
+                            alert(refererUrl);
                             if(refererUrl!=''){
                                 window.location.href=refererUrl;
                             }else{
@@ -66,5 +98,5 @@
                 })
             })
         })
-    </script>
+    </script>-->
 </block>
