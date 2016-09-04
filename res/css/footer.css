@@ -1,0 +1,90 @@
+.container_footer {
+  width: 100%;
+  height: auto;
+}
+
+.footer_list {
+  width: 95%;
+  height: auto;
+  border: 1px solid #DADADA;
+  margin: 10px auto 0 !important;
+  overflow: hidden;
+}
+.footer_list > div {
+  float: left;
+  display: inline-block;
+}
+.footer_list .list_left {
+  margin: 10px;
+}
+.footer_list .list_left img {
+  width: 70px;
+  height: 70px;
+}
+.footer_list .list_center {
+  margin-left: 2%;
+  overflow: hidden;
+}
+.footer_list .list_center h3 {
+  font-size: 14px;
+  height: 20px;
+  width: 160px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+.footer_list .list_center .ul_start {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+.footer_list .list_center .ul_start li.start {
+  display: inline-block;
+  float: left;
+  width: 16px;
+  height: 16px;
+}
+.footer_list .list_center .ul_start :not(:nth-of-type(1)) {
+  margin-left: 5px;
+}
+.footer_list .list_center .ul_start li.checked {
+  background: url("../images/u15.png") no-repeat scroll;
+  background-size: cover;
+}
+.footer_list .list_center .ul_start li.unchecked {
+  background: url("../images/u71.png") no-repeat scroll;
+  background-size: cover;
+}
+.footer_list .list_center .numbers {
+  clear: both;
+  color: #222;
+  font-size: 12px;
+}
+.footer_list .list_center .address {
+  clear: both;
+  color: #999;
+  font-size: 12px;
+}
+
+div.list_right {
+  float: right !important;
+  position: relative;
+  margin-top: 25px;
+  margin-right: 10px;
+}
+div.list_right .money {
+  font-size: 14px;
+}
+div.list_right .money .red {
+  color: #f60d2e;
+}
+div.list_right .money img {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: -10px;
+}
+div.list_right .money .grey {
+  color: #CCCCCC;
+}
+
+/*# sourceMappingURL=footer.css.map */

@@ -2,27 +2,108 @@
     <div class="swiper-container">
         <div class="swiper-wrapper">
             <div class="swiper-slide" style="height: 3.5rem;">
-                hello
+                <img src="__IMG__/9ca4a759-2c13-4a9f-99f6-ad7009c14dcd.jpg" />
             </div>
             <div class="swiper-slide" style="height: 3.5rem;">
-                hello
+                <img src="__IMG__/84eb7f88-7d85-41c1-93d7-fdbe092eb95c.jpg" />
             </div>
             <div class="swiper-slide" style="height: 3.5rem;">
-                hello
+                <img src="__IMG__/b573386c-f59e-4cc1-bb36-cc8124601e96.jpg" />
             </div>
+
             <div class="swiper-slide" style="height: 3.5rem;">
-                hello
+                <img src="__IMG__/84eb7f88-7d85-41c1-93d7-fdbe092eb95c.jpg" />
             </div>
         </div>
+        <div class="swiper-pagination"></div>
     </div>
+    <div class="container_middle">
+				<div class="middle_select">
+					<select name="province" id="province">
+						<option value="">请选择</option>
+					</select>
+					<select name="city" id="city">
+						<option value="">请选择</option>
+					</select>
+					<select name="area" id="area">
+						<option value="">请选择</option>
+					</select>
+				</div>
+			</div>
+
+    <style>
+        .swiper-pagination-bullet-active {
+            background: #fff !important;
+        }
+        .container_middle {
+  width: inherit;
+  height: 50px;
+  background-color: #FFFFFF;
+}
+
+.middle_select select {
+  width: 33%;
+  height: 44px;
+  display: inline-block;
+  float: left;
+  margin-top: 3px;
+  border-radius: 4px;
+  outline: medium;
+  border: 1px solid #dadada;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: url("__IMG__/arrow.png") no-repeat scroll right 10px center transparent;
+  text-indent: 16px;
+  font-size: 0.928571em;
+  padding-right: 14px;
+}
+.middle_select :not(:nth-of-type(1)) {
+  margin-left: 0.5%;
+}
+
+select::-ms-expand {
+  display: none;
+}
+    </style>
     <link rel="stylesheet" href="__MODULE__/swiper/swiper-3.3.1.min.css">
     <script src="__MODULE__/swiper/swiper-3.3.1.min.js"></script>
+    <script src="__JS__/city.js"></script>
     <script>
+        // var swiper = new Swiper('.swiper-container', {
+        //     pagination: '.swiper-pagination',
+        //     direction: 'horizontal',
+        //     loop: true,
+        // });
+
         var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            direction: 'horizontal',
-            loop: true,
-        });
+        pagination: '.swiper-pagination',
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        paginationClickable: true,
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: 2500,
+        loop: true,
+        autoplayDisableOnInteraction: false
+    });
+    $(function(){
+        var province="";  //省市
+	    var city =""; //地区
+	    var school=""; //学校
+        initProvince();
+			$('#province').change(function(){
+				province = $(this).val();
+				 //loadData(page,province,city,school);
+			});
+			$('#city').change(function(){
+				city = $(this).val();
+				//加载列表数据
+				//loadData(page,province,city,school);
+				//初始化学校下拉鲁昂
+				//initSchoolSel(city);
+			});
+    });
 
     </script>
 </div>
