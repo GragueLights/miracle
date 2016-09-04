@@ -16,4 +16,7 @@ class BaseController extends Controller {
         
     }
 
+    public function apidev(){
+        
+    }
 }
