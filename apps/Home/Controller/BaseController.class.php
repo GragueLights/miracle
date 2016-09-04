@@ -9,5 +9,8 @@ class BaseController extends Controller {
     {
         //construct
     }
+    public function test(){
+        //test
+    }
 
 }
