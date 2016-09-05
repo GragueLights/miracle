@@ -25,6 +25,7 @@ return array(
         'ajaxIsUserExist'=>'user/ajaxIsUserExist',
         'ajaxGetCode'=>'user/ajaxGetCode',
         'ajaxDoRegister'=>'user/ajaxDoRegister',
+        
     )
 
 );

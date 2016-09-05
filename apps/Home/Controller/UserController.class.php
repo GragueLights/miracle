@@ -43,6 +43,9 @@ class UserController extends BaseController {
         $this->display();
     }
 
+
+
+
     /**
      * 根据tel获取手机验证码
      * @param $tel 电话号码
@@ -109,7 +112,6 @@ class UserController extends BaseController {
     }
 
 
-
     /**
      * 用户注册接口
      */
@@ -146,6 +148,30 @@ class UserController extends BaseController {
     }
     
 
+    /**
+     * 创建社团接口
+     * 需要的数据,用户id,用户名称,认证资料的图片
+     * tel ,eamil,组织名称,创建类型1,2
+     */
+    public function ajaxCreateOrginse(){
+        if(!IS_POST) return;
+
+
+        $tel = $_POST['tel'];
+        $email = $_POST['email'];
+        $name = $_POST['name'];//用户名
+        $orginseName = $_POST['orgniseName'];
+        $id = $_POST['id'];
+        $orginseType=$_POST['orginseType'];
+
+        if(empty($tel)||empty($email)||empty($name)||empty($orginseName)||empty($id)||empty($orginseType)){
+            return;
+        }
+
+        $filename = $_POST['img'];
+        $upload = new \Think\Upload();// 实例化上传类
+
+    }
 
     
 }

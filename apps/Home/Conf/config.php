@@ -8,4 +8,7 @@ return array(
 		'__JS__'     => __ROOT__ . '/res/js',
 		'__MODULE__'=>__ROOT__.'/res/module'
 	)  ,
+
+
+
 );
