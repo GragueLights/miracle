@@ -1,0 +1,23 @@
+input[name="Code"] {
+  width: 5.3rem;
+}
+
+input[type="button"] {
+  width: 1.74rem;
+  height: 0.72rem;
+  line-height: 0.72rem;
+  margin-left: 0.1rem;
+  display: inline-block;
+  text-align: center;
+  border: 0.018rem solid #cacaca;
+  background-color: #ccc;
+  border-radius: 0.108rem;
+  text-indent: 0rem;
+  letter-spacing: 0rem;
+}
+
+form[name="register_form"] {
+  margin-top: 0.5rem;
+}
+
+/*# sourceMappingURL=register.css.map */

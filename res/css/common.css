@@ -1,7 +1,7 @@
 .input-g-line {
   width: inherit;
-  height: 1.17rem;
   margin-bottom: 4px;
+  padding-left: 0.18rem;
 }
 
 .input-g-title {
@@ -60,11 +60,10 @@
 }
 
 div.error {
-  width: 9.06rem;
+  width: 100%;
   height: 0.29rem;
   line-height: 0.29rem;
   display: inline-block;
-  margin-left: 2.05rem;
   margin-top: 0.07rem;
   color: #e95b51;
 }
@@ -76,6 +75,12 @@ div.error > label {
   border-radius: 6px !important;
   border-color: #e95b51 !important;
   box-shadow: 0 0 5px #e95b51;
+}
+
+@media screen and (min-width: 414px) {
+  div.error > label {
+    margin-left: 1.81rem;
+  }
 }
 
 /*# sourceMappingURL=common.css.map */
