@@ -1,56 +1,21 @@
 <extend name="Public/nomenu" />
 
 <block name="main">
-    <div class="login-wrapper">
-        <!--用户名:<input id="tel" type="tel" style=""/>
-        密码:<input id="keyword" type="password"/>
-        <input type="hidden" id="refererUrl" val="{$refererUrl}"/>
-        <button id="login-btn" type="submit">登录</button>-->
-        <form id="login-form" name="login-form" method="POST" action="/ajaxDoLogin" autocomplete="off" novalidate="novalidate">
-            <div class="input-g-line">
-                <span class="input-g-title">用户名</span>
-                <div class="input-g">
-                    <input type="text" id="Mobile" name="Mobile" placeholder="请输入手机号" />
+    <div class="login page">
+        <div class="form">
+            <div class="mobile-field">
+                <input type="tel" class="mobile-number" id="tel" placeholder="请输入手机号" style="color:#000000">
+            </div>
 
-                </div>
-                <div class="error"></div>
-            </div>
-            <div class="clear"></div>
-            <div class="input-g-line">
-                <span class="input-g-title">密码</span>
-                <div class="input-g">
-                    <input type="password" id="Pass" name="Pass" placeholder="请输入密码" />
-                </div>
-                <div class="error"></div>
-            </div>
-            <div class="clear"></div>
-            <div class="input-g-line">
+            <div class="keyword-field">
+                <input type="password" class="mobile-keywords" id="keywords" placeholder="请输入密码" style="color:#000000">
 
-                <div class="input-g currentbtn">
-                    <a class="register_btn" id="login_btn">登录</a>
-                </div>
             </div>
-            <div class="clear"></div>
-        </form>
+            <button class="login-btn" onclick="do_login()">登录</button>
+            <input type="hidden" id="refererUrl" value="{$refererUrl}">
+            <!--<p class="text">点击登录，即表示您同意沃德股市气象站 <a href="/license">用户协议</a>和 <a href="/disclaimer">免责声明</a></p>-->
+        </div>
     </div>
-    <style>
-        .login-wrapper {
-            margin-top: 1rem;
-        }
-        
-        input {
-            display: block;
-            height: .6rem;
-            border: 1px solid #FF0000;
-            padding: .1rem .2rem;
-        }
-        
-        button {
-            padding: .1rem .2rem;
-            background-color: #FF0000;
-            outline: 0;
-        }
-    </style>
     <script type="text/javascript">
     $(function(){
        $("#login_btn").click(function() {
