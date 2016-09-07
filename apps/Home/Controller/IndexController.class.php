@@ -29,5 +29,13 @@ class IndexController extends BaseController {
         $this->assign('pageTitle','往期活动');
         $this->display();
     }
+
+    /**
+     * 历史
+     */
+    public function company(){
+        $this->assign('pageTitle','社团');
+        $this->display();
+    }
     
 }
