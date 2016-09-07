@@ -18,6 +18,7 @@ return array(
         'club'=>'index/club',//社团活动
         'business'=>'index/business',//企业活动
         'history'=>'index/history',//往期
+        'company'=>'index/company',//社团
 
 
         //ajax请求映射

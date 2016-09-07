@@ -1,1 +1,112 @@
 <extend name="Public/nomenu" />
+<block name="main">
+    <form id="register_form" name="register_form" action="">
+        <div class="input-g-line">
+            <span class="input-g-title">用户名</span>
+            <div class="input-g">
+                <input type="text" id="Mobile" name="Mobile" placeholder="请输入手机号" />
+
+            </div>
+            <div class="error"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="input-g-line">
+            <span class="input-g-title">验证码</span>
+            <div class="input-g">
+                <input type="text" id="Code" name="Code" placeholder="请输入验证码" />
+                <input id="btnSendCode" type="button" value="获取验证码">
+                <!--<a href="#" type="button" id="btnSendCode" name="btnSendCode">获取验证码</a>-->
+            </div>
+            <div class="error"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="input-g-line">
+            <span class="input-g-title">密码</span>
+            <div class="input-g">
+                <input type="password" id="Pass" name="Pass" placeholder="请输入密码" />
+            </div>
+            <div class="error"></div>
+        </div>
+        <div class="clear"></div>
+        <div class="input-g-line">
+
+            <div class="input-g currentbtn">
+                <a class="register_btn" id="register_btn">注册</a>
+            </div>
+        </div>
+        <div class="clear"></div>
+        </from>
+        <link rel="stylesheet" href="__CSS__/register.css">
+        <script src="__JS__/sendCode.js"></script>
+        <script type="text/javascript">
+        
+       
+        $(function(){
+        
+            sendCode();            
+    	    //$('#btnSendCode').on('click',sendMessage);     
+            $('#btnSendCode').click(sendMessage);     
+              $("#register_btn").click(function() {
+		    if ($("#register_form").valid()) {
+                $("#register_form").submit();
+            }
+		
+	});
+	var validator = $("#register_form").validate({
+			rules: {
+				Mobile: {
+					required: true,
+                    isMobile:true,
+                     remote: {
+                    type: "get",
+                    url: "/ajaxIsUserExist" 
+                }
+				},
+                Code:{
+                    required: true,
+                    remote: {
+                    type: "get",
+                    url: "/ajaxIsUserExist" 
+                 }
+                },
+				Pass: {
+					required: true,
+                    rangelength:[6,16]
+				},
+			},
+			messages: {
+				Mobile: {
+					required: '手机号码不能为空',
+                    isMobile:"请正确填写手机号码!",
+                    remote:"该账号不存在!"
+				},
+                Code: {
+					required: '验证码不能为空',
+                    remote:"验证码不正确"
+				},
+				Pass: {
+					required: '必填字段',
+                    rangelength:"密码长度在6-16位之间"
+				}
+			},
+			errorPlacement: function(error, element) {
+				error.appendTo(element.parent().next());
+				element.addClass("error_border");
+			},
+			submitHandler: function(form) {
+
+			},
+			success: function(label,element) {
+				label.html("&nbsp;").addClass("checked");
+				$(element).removeClass("error_border");
+			},
+			highlight: function(element, errorClass) {
+				//$(element).parent().next().find("." + errorClass).removeClass("checked");
+				$(element).addClass("error_border");
+			}
+		})  
+        });
+      
+
+</script>
+</block>

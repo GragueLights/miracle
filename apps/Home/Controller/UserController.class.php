@@ -34,11 +34,11 @@ class UserController extends BaseController {
      * 用户中心
      */
     public function me(){
-        if(empty($_SESSION['userinfo'])){
-            $_SESSION['refererUrl']='/me';
-            header("location:/login");
-            die;
-        }
+        // if(empty($_SESSION['userinfo'])){
+        //     $_SESSION['refererUrl']='/me';
+        //     header("location:/login");
+        //     die;
+        // }
         $this->assign('pageTitle','用户中心');
         $this->display();
     }
