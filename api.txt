@@ -1,0 +1,70 @@
+api接口列表
+1,登录接口
+请求url:http://localhost/ajaxDoLogin
+请求方式:POST
+请求参数事例:
+{
+    'tel':18811708041,//电话号码
+    'keyword':xxxxx,//用户密码
+}
+返回结果示例:
+{
+    'msg':ok,//表示是否成功
+    'status'://状态
+    'item':{
+        'uid':用户的唯一标识id,
+        'unam':用户名,
+        'utel'://用户电话号码
+        'utype'://用户类型,1:普通用户,2:社团,3:企业
+    }
+}
+
+2,用户是否存在接口
+请求url:http://localhost/ajaxIsUserExist
+请求方式:GET,
+请求参数示例:
+{
+    tel:xxxxxx//用户手机号
+}
+返回结果示例:
+{
+    'msg':ok,//表示是否成功,error:表示不存在该用户
+    'status'://状态
+    'item':{
+        tel:xxxxx//如果存在则会返回该号码
+    }
+}
+
+3,请求验证码
+请求url:http://localhost/ajaxGetCode
+请求方式:GET,
+请求参数示例:
+{
+    tel:xxxxxx//用户手机号
+}
+返回结果示例:
+{
+    'msg':ok,//表示是否成功,error:表示不存在该用户
+    'status'://状态
+    'item':{
+        vocde://验证码
+    }
+}
+4,注册用户
+url:http:localhost/ajaxDoRegister
+请求方式:POSR,
+请求参数示例:
+{
+    tel:xxxxxx//用户手机号
+    vcode://验证码
+    keywords://密码
+    rekeywords://确认密码
+}
+返回结果示例:
+{
+    'msg':ok,//表示是否成功,error:表示不存在该用户
+    'status'://状态
+    'item':{
+        id://注册成功后,返回用户的唯一标识id
+    }
+}
