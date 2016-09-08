@@ -271,25 +271,25 @@ body {
 .fixed-menu {
   padding-bottom: 1rem !important; }
 
-.login {
+.form-wrp {
   /*background: #000000;*/
   padding-top: 0.4rem;
   border-top: 1px solid #a8a8a8; }
 
-.login .form {
+.form-wrp .form {
   width: 100%;
   padding: 0 0.2rem;
   text-align: center;
   max-width: 750px;
   margin: 0 auto; }
 
-.login .form .mobile-field, .login .form .keyword-field {
+.form-wrp .form .field {
   position: relative;
   width: 100%;
   height: 0.6rem;
   margin-bottom: 0.2rem; }
 
-.login .form .mobile-field .filed-label {
+.form-wrp .form .mobile-field .filed-label {
   position: absolute;
   top: 0;
   right: 0;
@@ -300,9 +300,7 @@ body {
   background: #f22b3e;
   color: #fff; }
 
-.login .form .mobile-field input,
-.login .form .keyword-field input,
-.login .form .verify-code-field input {
+.form-wrp .form input {
   border: 1px solid #aaa;
   outline: none;
   height: 0.6rem;
@@ -311,10 +309,11 @@ body {
   font-size: 0.28rem;
   width: 100%;
   background: #fff;
+  color: #000000;
   margin-bottom: .2rem;
   -webkit-appearance: none; }
 
-.login .form .login-btn {
+.form-wrp .form .submit-btn {
   width: 100%;
   height: 0.8rem;
   line-height: 0.8rem;
@@ -325,10 +324,10 @@ body {
   border: none;
   outline: none; }
 
-.login .form .text {
+.form-wrp .form .text {
   font-size: 0.24rem; }
 
-.login .form .text a {
+.form-wrp .form .text a {
   color: #f22b3e;
   text-decoration: none; }
 

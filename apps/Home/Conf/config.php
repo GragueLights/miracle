@@ -10,5 +10,6 @@ return array(
 	)  ,
 
 
+	'ACTIVE_APPLY_UPLOAD_PATH'=>__ROOT__.'/upload/activeapply',
 
 );

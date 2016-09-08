@@ -68,3 +68,4 @@ url:http:localhost/ajaxDoRegister
         id://注册成功后,返回用户的唯一标识id
     }
 }
+

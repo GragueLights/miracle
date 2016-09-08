@@ -1,17 +1,17 @@
 <extend name="Public/nomenu" />
 
 <block name="main">
-    <div class="login page">
+    <div class="form-wrp page">
         <div class="form">
-            <div class="mobile-field">
+            <div class="mobile-field field">
                 <input type="tel" class="mobile-number" id="tel" placeholder="请输入手机号" style="color:#000000">
             </div>
 
-            <div class="keyword-field">
+            <div class="keyword-field field">
                 <input type="password" class="mobile-keywords" id="keywords" placeholder="请输入密码" style="color:#000000">
 
             </div>
-            <button class="login-btn" onclick="do_login()">登录</button>
+            <button class="login-btn submit-btn" onclick="do_login()">登录</button>
             <input type="hidden" id="refererUrl" value="{$refererUrl}">
             <!--<p class="text">点击登录，即表示您同意沃德股市气象站 <a href="/license">用户协议</a>和 <a href="/disclaimer">免责声明</a></p>-->
         </div>
