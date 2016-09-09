@@ -16,4 +16,13 @@ class ActiveController extends BaseController {
     public function orginseCheck(){
         $this->display();
     }
+
+
+    /**
+     * 根据活动的类型查询所有的活动
+     * @param $id 活动的类型
+     */
+    public function ajaxGetActivities($id){
+
+    }
 }

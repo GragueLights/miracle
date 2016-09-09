@@ -20,8 +20,8 @@ class Upload {
         'exts'          =>  array(), //允许上传的文件后缀
         'autoSub'       =>  true, //自动子目录保存文件
         'subName'       =>  array('date', 'Y-m-d'), //子目录创建方式，[0]-函数名，[1]-参数，多个参数使用数组
-        'rootPath'      =>  './Uploads/', //保存根路径
-        'savePath'      =>  '', //保存路径
+        'rootPath'      =>  './upload/', //保存根路径
+        'savePath'      =>  './activeapply/', //保存路径
         'saveName'      =>  array('uniqid', ''), //上传文件命名规则，[0]-函数名，[1]-参数，多个参数使用数组
         'saveExt'       =>  '', //文件保存后缀，空则使用原后缀
         'replace'       =>  false, //存在同名是否覆盖
@@ -313,25 +313,27 @@ class Upload {
     private function error($errorNo) {
         switch ($errorNo) {
             case 1:
-                $this->error = '上传的文件超过了 php.ini 中 upload_max_filesize 选项限制的值！';
+//                $this->error = '上传的文件超过了 php.ini 中 upload_max_filesize 选项限制的值！';
+                $this->error = '上传的文件过大';
                 break;
             case 2:
-                $this->error = '上传文件的大小超过了 HTML 表单中 MAX_FILE_SIZE 选项指定的值！';
-                break;
+//                $this->error = '上传文件的大小超过了 HTML 表单中 MAX_FILE_SIZE 选项指定的值！';
+//                break;
             case 3:
-                $this->error = '文件只有部分被上传！';
-                break;
+//                $this->error = '文件只有部分被上传！';
+//                break;
             case 4:
-                $this->error = '没有文件被上传！';
+//                $this->error = '没有文件被上传！';
+                $this->error = '请上传活动申请表！';
                 break;
             case 6:
-                $this->error = '找不到临时文件夹！';
-                break;
+//                $this->error = '找不到临时文件夹！';
+//                break;
             case 7:
-                $this->error = '文件写入失败！';
-                break;
+//                $this->error = '文件写入失败！';
+//                break;
             default:
-                $this->error = '未知上传错误！';
+                $this->error = '未知上传错误！请稍后再试';
         }
     }
 

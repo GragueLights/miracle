@@ -30,8 +30,10 @@ body{ background: #fff; font-family: '微软雅黑'; color: #333; font-size: 16p
 <?php }?>
 <p class="detail"></p>
 <p class="jump">
-页面自动 <a id="href" href="<?php echo($jumpUrl); ?>">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b>
+页面自动跳转到首页等待时间： <b id="wait"><?php echo($waitSecond); ?></b>
 </p>
+	<p>等不急了<a id="href" style="color: #d43f3a" href="<?php echo($jumpUrl); ?>">跳转</a></p>
+
 </div>
 <script type="text/javascript">
 (function(){
@@ -39,7 +41,7 @@ var wait = document.getElementById('wait'),href = document.getElementById('href'
 var interval = setInterval(function(){
 	var time = --wait.innerHTML;
 	if(time <= 0) {
-		location.href = href;
+//		location.href = href;
 		clearInterval(interval);
 	};
 }, 1000);

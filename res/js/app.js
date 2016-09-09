@@ -2,6 +2,7 @@
  * Created by xiao on 16/8/30.
  */
 (function (win,doc,$) {
+    $('.icon-left').hide();
     var path = window.location.pathname;
     if(path=='/club'){
         console.log(path)

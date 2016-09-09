@@ -21,6 +21,10 @@ return array(
         'history'=>'index/history',//往期
         'company'=>'index/company',//社团
         'activeApplay'=>'active/activeApplay',
+        //活动申请
+        'doApplyActivite'=>'active/doApplyActivite',
+        //组织创建申请
+        'origiseApply'=>'user/origiseApply',
         
         //ajax请求映射
         'ajaxDoLogin'=>'user/ajaxDoLogin',

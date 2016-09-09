@@ -43,6 +43,29 @@ class UserController extends BaseController {
         $this->display();
     }
 
+    /**
+     * 组织申请页面
+     */
+    /**
+     * @param $id 社团或者企业标志
+     * 1,创建社团
+     * 2,创建企业
+     */
+    public function origiseApply($id){
+        if(empty($id)) return;
+
+        if($id==1){
+            $this->assign('pageTitle','社团创建');
+        }else if($id==2){
+            $this->assign('pageTitle','企业创建');
+        }else{
+            header('location:/me');
+            return ;
+        }
+        
+        $this->display();
+    }
+
 
 
 

@@ -10,6 +10,27 @@ use Think\Think;
  */
 class ActiveController extends BaseController {
     /**
+     * 活动申请页面
+     */
+    public function activeApplay(){
+        
+//        if(empty($_SESSION['userinfo'])){
+//            $_SESSION['refererUrl']='/activeApplay';
+//            header('location:/login');
+//        }else{
+//            if($_SESSION['userinfo']['utype']==1){
+//                //普通用户
+//
+//            }
+//        }
+        $this->assign('pageTitle','活动申请');
+        $this->display();
+    }
+
+
+
+
+    /**
      * 获取活动历史记录
      * @param $type 活动类型
      * 1,club
@@ -35,33 +56,53 @@ class ActiveController extends BaseController {
     
 
     //申请活动
-    public function ajaxApplyActivity(){
-        //        name	varchar(60)	发布人姓名
-        //tel	char(12)	联系方式
-        //email	varchar(60)	通知邮箱
-        //material	varchar(255)	材料url
+    public function doApplyActivite(){
+
+//        if(empty($_SESSION['userinfo'])){
+//            $_SESSION['refererUrl']='/activeApplay';
+//            header('location:/login');
+//        }
+
+
         $name = $_POST['name'];
         $tel = $_POST['tel'];
         $email = $_POST['email'];
+        $file = $_FILES['applyFile'];
         //数据检查
-        if(empty($name)||empty($email)||empty($tel)) return;
+        if(empty($name)||empty($email)||empty($tel)||empty($file)) return;
+
+        //文件上传配置
+        $config=array(
+            'maxSize'  =>3145728,
+            'exts'=>array('doc','docx'),
+            'savePath'=>'./activeapply/',
+            'autoSub'=>true,
+            'subName'=>array('date','Ymd'),
+            'saveName'=>time().'_'.$tel.'_'.urlencode($name),
+        );
 
         //文件提交
-        $upload = new \Think\Upload();
-        $upload->exts = array('word');// 设置附件上传类
-        $upload->savePath =C('ACTIVE_APPLY_UPLOAD_PATH');
+        $upload = new \Think\Upload($config);
+        $info = $upload->uploadOne($file);
+
+        if(!$info){
+           //上传失败
+           $this->error($upload->getError());
+            die;
+        }
+        //处理,入库
+
+        //用户id
+        $uid = (int)$_SESSION['userinfo']['uid'];
+        //用户类型,用来做用户的活动的类型
+        $utype=(int)$_SESSION['userinfo']['utype'];
+
+
+
+        $this->success("上传成功,我们将会尽快处理,处理结果将会邮件通知你!",'/club',5);
+
 
     }
 
-    /**
-     * 活动申请页面
-     */
-    public function activeApplay(){
-        $this->assign('pageTitle','活动申请');
-        $this->display();
-    }
 
-
-
-    
 }
