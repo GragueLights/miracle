@@ -67,7 +67,6 @@ class UserController extends BaseController {
             header('location:/me');
             return ;
         }
-        
         $this->display();
     }
 

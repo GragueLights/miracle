@@ -331,4 +331,63 @@ body {
   color: #f22b3e;
   text-decoration: none; }
 
+.ul-wrp {
+  width: 100%;
+  padding: 0.2rem; }
+  .ul-wrp .list-item {
+    height: 2rem;
+    border: 1px solid #DADADA;
+    padding: .2rem;
+    position: relative;
+    margin-top: .2rem;
+    margin-bottom: .2rem; }
+    .ul-wrp .list-item img {
+      width: 1.5rem;
+      height: 1.5rem;
+      float: left; }
+    .ul-wrp .list-item .list_center {
+      width: 50%;
+      float: left;
+      margin-left: 2%;
+      overflow: hidden; }
+      .ul-wrp .list-item .list_center h3 {
+        font-size: 14px;
+        height: 20px;
+        width: 160px;
+        overflow: hidden;
+        margin-top: 5px; }
+      .ul-wrp .list-item .list_center .ul_start {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        display: inline-block; }
+        .ul-wrp .list-item .list_center .ul_start li.start {
+          display: inline-block;
+          float: left;
+          width: 16px;
+          height: 16px; }
+        .ul-wrp .list-item .list_center .ul_start :not(:nth-of-type(1)) {
+          margin-left: 5px; }
+        .ul-wrp .list-item .list_center .ul_start li.checked {
+          background: url("../images/u15.png") no-repeat scroll;
+          background-size: cover; }
+        .ul-wrp .list-item .list_center .ul_start li.unchecked {
+          background: url("../images/u71.png") no-repeat scroll;
+          background-size: cover; }
+      .ul-wrp .list-item .list_center .numbers {
+        clear: both;
+        color: #222;
+        font-size: .2rem; }
+      .ul-wrp .list-item .list_center .address {
+        clear: both;
+        color: #999;
+        font-size: .2rem; }
+    .ul-wrp .list-item .list_right {
+      width: 20%;
+      height: inherit;
+      float: right;
+      margin-top: .4rem;
+      vertical-align: middle; }
+    .ul-wrp .list-item .red {
+      color: #f60d2e; }
+
 /*# sourceMappingURL=app.css.map */
