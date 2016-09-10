@@ -94,7 +94,7 @@ class UserController extends BaseController {
                 $map['uid']=$result['uid'];
                 $map['uname']=$result['uname'];
                 $map['utel']=$result['utel'];
-                $map['utype']=$result['utype'];
+                $map['utype']=$result['utype'];//1,普通用户,2,社团用户,3,企业
                 $this->info['item']=$map;
                 //缓存用户信息
                 $_SESSION['userinfo']=$map;
@@ -104,7 +104,6 @@ class UserController extends BaseController {
                 $this->info['status']=-101;
             }
         }
-
         echo  json_encode($this->info,true);
     }
 

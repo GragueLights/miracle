@@ -47,6 +47,10 @@ return array(
         'activeCheck'=>'admin/Active/activeCheck',
         'adminUserLogin'=>'admin/User/adminUserLogin',
         'orginseCheck'=>'admin/Active/orginseCheck',
+        //获取所有的组织创建申请
+        'ajaxGetAllOrigniseApply'=>'admin/Orignise/ajaxGetAllOrigniseApply',
+        //获取所有的活动申请
+        'ajaxGetAllActivitiesApply'=>'admin/Active/ajaxGetAllActivitiesApply',
 
     )
 

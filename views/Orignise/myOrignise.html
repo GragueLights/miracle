@@ -1,12 +1,27 @@
 <extend name="Public/nomenu" />
 
 <block name="main">
-    <p class="alert">你暂时还没有组织</p>
-    <div class="origiseCreate">
-        <a href="/origiseApply?id=1" style="background-color: #FF0000">创建社团</a>
-        <a href="/origiseApply?id=2" style="background-color: #4e8455">创建企业</a>
-        <a href="/addOrignise" style="background-color: #FF0000">加入组织</a>
-    </div>
+
+    <switch name="type">
+        <case value="0">
+            <p class="alert">{$msg}</p>
+        </case>
+        <case value="1">
+            <p class="alert">你暂时还没有组织</p>
+            <div class="origiseCreate">
+                <a href="/origiseApply?id=1" style="background-color: #FF0000">创建社团</a>
+                <a href="/origiseApply?id=2" style="background-color: #4e8455">创建企业</a>
+                <a href="/addOrignise" style="background-color: #FF0000">加入组织</a>
+            </div>
+        </case>
+        <case value="2">
+
+        </case>
+        <case value="3"></case>
+
+    </switch>
+
+
     <style>
         .alert{
             padding: .2rem;
