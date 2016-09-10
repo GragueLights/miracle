@@ -8,6 +8,7 @@ return array(
     'URL_CASE_INSENSITIVE' =>true,//忽略url大小写
 
 
+   
 
 
 

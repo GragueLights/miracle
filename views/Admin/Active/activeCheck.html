@@ -2,29 +2,37 @@
 <block name="body">
     <h2>活动申请审核</h2>
     <div class="container">
-        <select id="" name="" >
+        <select id="type" >
             <option value="">请选择</option>
+            <option value="1">社团活动</option>
+            <option value="2">企业活动</option>
         </select>
-        <select id="" name="" >
-            <option value="">请选择日期</option>
-            <option value="">2016-09-10</option>
-            <option value="">2016-09-11</option>
-            <option value="">2016-09-12</option>
-            <option value="">2016-09-13</option>
-            <option value="">2016-09-14</option>
-            <option value="">2016-09-15</option>
-            <option value="">2016-09-16</option>
+        <select id="status">
+            <option value="">审核状态</option>
+            <option value="1">未审核</option>
+            <option value="2">已审核</option>
+            <option value="3">未通过</option>
         </select>
+        <select  id="time" >
+            <option value="0">请选择日期</option>
+            <option value="1">2016-09-10</option>
+            <option value="2">2016-09-11</option>
+            <option value="3">2016-09-12</option>
+            <option value="4">2016-09-13</option>
+            <option value="5">2016-09-14</option>
+            <option value="6">2016-09-15</option>
+            <option value="7">2016-09-16</option>
+        </select><button class="btn btn-default" id="btn-search">查询</button>
     </div>
     <div class="table-container">
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th id="name" style="text-align:center;">发布人</th>
-                    <th id="tel" style="text-align:center;">联系方式</th>
-                    <th id="email" style="text-align:center;">邮箱</th>
-                    <th id="createtime" style="text-align:center;">创建时间</th>
-                     <th id="status" style="text-align:center;">状态</th>
+                    <th  data-name="name" style="text-align:center;">发布人</th>
+                    <th  data-name="tel" style="text-align:center;">联系方式</th>
+                    <th data-name="email" style="text-align:center;">邮箱</th>
+                    <th data-name="createtime" style="text-align:center;">创建时间</th>
+                     <th  data-name="status" style="text-align:center;">状态</th>
                 </tr>
             </thead>
             <tbody>
@@ -77,4 +85,36 @@
             padding-left:5px;
         }
     </style>
+    <script>
+        (function () {
+            $('#btn-search').on('click',function (e) {
+                var type = $('#type option:selected').val();
+                var status = $('#status option:selected').val();
+                var time = $('#time option:selected').text();
+                var timeOptionValue = $('#time option:selected').val();
+
+                if(type==''&&status==''&&timeOptionValue=='0') return;
+                console.log('type=='+type)
+                console.log('status=='+status)
+                console.log('time=='+time)
+                $.ajax({
+                    url:'/ajaxGetAllActivitiesApply',
+                    type:"get",
+                    data:{
+                        type:type==''?'':type,
+                        status:status==''?'':status,
+                        time:time=='请选择日期'?'':time,
+                    },
+                    dataType:'json',
+                    success:function (data) {
+                        console.log(data)
+                    }
+                })
+            })
+        })();
+        function tableList() {
+
+        }
+
+    </script>
 </block>

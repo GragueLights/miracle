@@ -17,7 +17,8 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "monolog/monolog": "1.0.*"
+        "monolog/monolog": "1.0.*",
+        "phpmailer/phpmailer": "^5.2"
     },
     "extra": {
         "think-path": "thinkphp"
@@ -27,4 +28,3 @@
         "preferred-install": "dist"
     }
 }
-

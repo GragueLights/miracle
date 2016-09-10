@@ -1,5 +1,6 @@
 <?php
 namespace Home\Controller;
+use Home\Model\ActivitiesApplyModel;
 use Think\Controller;
 use Think\Think;
 
@@ -76,12 +77,10 @@ class ActiveController extends BaseController {
     //申请活动
     public function doApplyActivite(){
 
-//        if(empty($_SESSION['userinfo'])){
-//            $_SESSION['refererUrl']='/activeApplay';
-//            header('location:/login');
-//        }
-
-
+        if(empty($_SESSION['userinfo'])){
+            $_SESSION['refererUrl']='/activeApplay';
+            header('location:/login');
+        }
         $name = $_POST['name'];
         $tel = $_POST['tel'];
         $email = $_POST['email'];
@@ -98,7 +97,6 @@ class ActiveController extends BaseController {
             'subName'=>array('date','Ymd'),
             'saveName'=>time().'_'.$tel.'_'.urlencode($name),
         );
-
         //文件提交
         $upload = new \Think\Upload($config);
         $info = $upload->uploadOne($file);
@@ -109,16 +107,24 @@ class ActiveController extends BaseController {
             die;
         }
         //处理,入库
+        $newApplay = array(
+            'uid'=>(int)$_SESSION['userinfo']['uid'],
+            'name'=>$name,
+            'tel'=>$tel,
+            'email'=>$email,
+            'material'=>$info['savepath'].$info['savename'],
+            'status'=>1,//申请中,1、审核中，2、已审核，3，未通过
+            'create_time'=>getNowTime(),
+            'type'=>(int)$_SESSION['userinfo']['utype'],
+        );
+        $apply = new ActivitiesApplyModel();
+        $result  = $apply->add($newApplay);
+        if($result){
+            $this->success("上传成功,我们将会尽快处理,处理结果将会邮件通知你!",'/club',3);
+        }else{
+            $this->error('系统繁忙,请稍后再试!');
+        }
 
-        //用户id
-        $uid = (int)$_SESSION['userinfo']['uid'];
-        //用户类型,用来做用户的活动的类型
-        $utype=(int)$_SESSION['userinfo']['utype'];
-
-
-
-        $this->success("上传成功,我们将会尽快处理,处理结果将会邮件通知你!",'/club',5);
-        
     }
 
 

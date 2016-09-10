@@ -8,7 +8,7 @@ return array(
 		'__JS__'     => __ROOT__ . '/res/js',
 		'__MODULE__'=>__ROOT__.'/res/module'
 	)  ,
-	
+
 	////默认错误跳转对应的模板文件
 	'TMPL_ACTION_ERROR' => '/Msg/error',
 	//默认成功跳转对应的模板文件

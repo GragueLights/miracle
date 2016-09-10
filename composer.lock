@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2d597913eccd8c286e619b8e973382c3",
-    "content-hash": "0645c80d9fcf472a0ac869b87cc77f99",
+    "hash": "f5fef2c41efa76d5a528405de97f81e4",
+    "content-hash": "ce94639ee169d72dd4b31326080d71c5",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -51,17 +51,77 @@
             "time": "2011-10-24 09:39:02"
         },
         {
+            "name": "phpmailer/phpmailer",
+            "version": "v5.2.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPMailer/PHPMailer.git",
+                "reference": "1d85f9ef3ecfc42bbc4f3c70d5e37ca9a65f629a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/PHPMailer/PHPMailer/1d85f9ef3ecfc42bbc4f3c70d5e37ca9a65f629a.zip",
+                "reference": "1d85f9ef3ecfc42bbc4f3c70d5e37ca9a65f629a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.0.0"
+            },
+            "require-dev": {
+                "phpdocumentor/phpdocumentor": "*",
+                "phpunit/phpunit": "4.7.*"
+            },
+            "suggest": {
+                "league/oauth2-google": "Needed for Google XOAUTH2 authentication"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "class.phpmailer.php",
+                    "class.phpmaileroauth.php",
+                    "class.phpmaileroauthgoogle.php",
+                    "class.smtp.php",
+                    "class.pop3.php",
+                    "extras/EasyPeasyICS.php",
+                    "extras/ntlm_sasl_client.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Jim Jagielski",
+                    "email": "jimjag@gmail.com"
+                },
+                {
+                    "name": "Marcus Bointon",
+                    "email": "phpmailer@synchromedia.co.uk"
+                },
+                {
+                    "name": "Andy Prevost",
+                    "email": "codeworxtech@users.sourceforge.net"
+                },
+                {
+                    "name": "Brent R. Matzelle"
+                }
+            ],
+            "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "time": "2016-06-06 09:09:37"
+        },
+        {
             "name": "topthink/framework",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/top-think/framework.git",
-                "reference": "b59649d128e4b29a4ffc590197e3c3a3b3a984f2"
+                "reference": "b1742361d0836b7f6ee360d40a35c4af559aeecb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://packagist.phpcomposer.com/files/top-think/framework/b59649d128e4b29a4ffc590197e3c3a3b3a984f2.zip",
-                "reference": "b59649d128e4b29a4ffc590197e3c3a3b3a984f2",
+                "url": "https://packagist.phpcomposer.com/files/top-think/framework/b1742361d0836b7f6ee360d40a35c4af559aeecb.zip",
+                "reference": "b1742361d0836b7f6ee360d40a35c4af559aeecb",
                 "shasum": ""
             },
             "require": {
@@ -95,7 +155,7 @@
                 "orm",
                 "thinkphp"
             ],
-            "time": "2016-08-30 04:08:31"
+            "time": "2016-09-10 02:17:11"
         },
         {
             "name": "topthink/think-installer",
