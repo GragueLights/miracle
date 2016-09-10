@@ -40,7 +40,8 @@ return array(
         'ajaxIsUserExist'=>'user/ajaxIsUserExist',
         'ajaxGetCode'=>'user/ajaxGetCode',
         'ajaxDoRegister'=>'user/ajaxDoRegister',
-
+        'demandAdd'=>'admin/Active/demandAdd',
+        'demandList'=>'admin/Active/demandList',
 
 
         //后台页面

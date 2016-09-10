@@ -22,6 +22,20 @@ class ActiveController extends BaseController {
         $this->display();
     }
 
+    /**
+     *
+     */
+    public function demandAdd(){
+        $this->display();
+    }
+    /**
+     *需求列表
+     */
+    public function demandList(){
+        $this->display();
+    }
+
+
 
     /**
      * 根据活动的类型查询所有的活动

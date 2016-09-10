@@ -1,7 +1,41 @@
 <include file="Public/head"/>
 <body style="padding: 70px;">
-    <include file="Public/header"/>
+<include file="Public/header"/>
 
-    <p>用户登录</p>
+<div class="login-div">
+    <div>
+        <form role="form">
+            <div class="form-group">
+                <label for="exampleInputEmail1">用户名</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入用户名">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">密码</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入密码">
+            </div>
+            <button type="submit" class="btn btn-success">登录</button>
+        </form>
+    </div>
+</div>
+<style>
+    body{
+        background-color: #f7f7f7;
+    }
 
+    button{
+        width:150px;
+        margin:0 75px;
+    }
+    .login-div{
+        width:300px;
+        height:500px;
+        display:table;
+        margin:0 auto;
+    }
+    .login-div>div{
+        display:table-cell;
+        vertical-align:middle;
+
+    }
+</style>
 </body>

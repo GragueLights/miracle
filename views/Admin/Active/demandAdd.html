@@ -1,0 +1,112 @@
+<extend name="Public/layout" />
+<block name="body">
+    
+    <div class="container">
+        <h2>发布需求</h2>
+        <div class="demand-div">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="Title" class="col-sm-2 control-label">标题</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="Title" placeholder="请输标题">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Content" class="col-sm-2 control-label">内容</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="4" id="Content" placeholder="请输入内容"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Needs" class="col-sm-2 control-label">要求</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="8" id="Needs" placeholder="请输入要求"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Tel" class="col-sm-2 control-label">联系方式</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="Tel" placeholder="请输入联系方式">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="JoinNum" class="col-sm-2 control-label">参与人数</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="JoinNum" placeholder="请输入参与人数">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Address" class="col-sm-2 control-label">活动地址</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="Address" placeholder="请输入活动地址">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ActiveType" class="col-sm-2 control-label">活动类型</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="ActiveType" placeholder="请输入活动类型">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Money" class="col-sm-2 control-label">活动经费</label>
+                    <div class="col-sm-10">
+                        <input type="numbe" class="form-control" id="Money" placeholder="请输入活动经费">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="StartTime" class="col-sm-2 control-label">开始时间</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" id="StartTime" placeholder="请输入开始时间">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="EndTime" class="col-sm-2 control-label">结束时间</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" id="EndTime" placeholder="请输入结束时间">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-8 col-sm-4">
+                        <button type="submit" class="btn btn-success">确定</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <style type="text/css">
+        .demand-div{
+            width:500px;
+            height:auto;
+            /*margin:0 auto;*/
+        }
+        .btn-success{
+            width:100%;
+        }
+        h2{
+            /*padding-left:2.7rem;*/
+             /*padding-left:27px;*/
+        }
+       
+@media screen and (min-width: 1050px) {
+    h2{
+        padding-left:2.7rem;
+    }
+}
+@media screen and (max-width:1050px) {
+    h2{
+        padding-left:2.7rem;
+    }
+}
+@media screen and (max-width:770px) {
+    h2{
+        padding-left:0;
+    }
+}
+    </style>
+    <script type="text/javascript">
+    $(function(){
+        
+    });
+    </script>
+</block>

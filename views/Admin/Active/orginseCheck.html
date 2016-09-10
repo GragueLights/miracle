@@ -1,4 +1,95 @@
 <extend name="Public/layout"/>
 <block name="body">
-    <p>这是组织申请审核页面</p>
+    <h2>组织申请审核</h2>
+     <div class="container">
+        <select id="" name="" >
+            <option value="">请选择</option>
+        </select>
+        <select id="" name="" >
+            <option value="">审核状态</option>
+            <option value="">已审核</option>
+            <option value="">未审核</option>
+        </select>
+        <select id="" name="" >
+            <option value="">请选择日期</option>
+            <option value="">2016-09-10</option>
+            <option value="">2016-09-11</option>
+            <option value="">2016-09-12</option>
+            <option value="">2016-09-13</option>
+            <option value="">2016-09-14</option>
+            <option value="">2016-09-15</option>
+            <option value="">2016-09-16</option>
+        </select>
+    </div>
+    <div class="table-container">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th id="name" style="text-align: center;">发布人</th>
+                    <th id="tel" style="text-align: center;">联系电话</th>
+                    <th id="email" style="text-align: center;">邮箱</th>
+                    <th id="ogname" style="text-align: center;">组织名称</th>
+                    <th id="type" style="text-align: center;">组织类型</th>
+                    <th id="createtime" style="text-align: center;">创建时间</th>
+                    <th id="status" style="text-align: center;">状态</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center;">奇迹</td>
+                    <td style="text-align: center;">13717171717</td>
+                    <td style="text-align: center;">13717171717@qq.com</td>
+                    <td style="text-align: center;">奇迹赞助</td>
+                    <td style="text-align: center;">企业</td>
+                    <td style="text-align: center;">2016-09-09</td>
+                    <td style="text-align: center;">正在进行中</td>
+                </tr>
+               <tr>
+                    <td style="text-align: center;">奇迹</td>
+                    <td style="text-align: center;">13717171717</td>
+                    <td style="text-align: center;">13717171717@qq.com</td>
+                    <td style="text-align: center;">奇迹赞助</td>
+                    <td style="text-align: center;">企业</td>
+                    <td style="text-align: center;">2016-09-09</td>
+                    <td style="text-align: center;">正在进行中</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">奇迹</td>
+                    <td style="text-align: center;">13717171717</td>
+                    <td style="text-align: center;">13717171717@qq.com</td>
+                    <td style="text-align: center;">奇迹赞助</td>
+                    <td style="text-align: center;">企业</td>
+                    <td style="text-align: center;">2016-09-09</td>
+                    <td style="text-align: center;">正在进行中</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;">奇迹</td>
+                    <td style="text-align: center;">13717171717</td>
+                    <td style="text-align: center;">13717171717@qq.com</td>
+                    <td style="text-align: center;">奇迹赞助</td>
+                    <td style="text-align: center;">企业</td>
+                    <td style="text-align: center;">2016-09-09</td>
+                    <td style="text-align: center;">正在进行中</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <style type="text/css">
+        .container{
+            margin:0;
+            padding:5px;
+        }
+        .container select{
+            width:100px;
+            height:40px;
+            text-align-last:center;
+        }
+        .table-container{
+            padding:5px;
+        }
+        h2{
+            margin-top:0px;
+            padding-left:5px;
+        }
+    </style>
 </block>

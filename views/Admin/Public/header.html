@@ -15,8 +15,10 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/activeCheck">活动审核</a></li>
-                    <li><a href="/orginseCheck">组织审核</a></li>
+                    <li class="activeCheck"><a href="/activeCheck">活动审核</a></li>
+                    <li class="orginseCheck"><a href="/orginseCheck">组织审核</a></li>
+                    <li class="demandadd"><a href="/demandadd">发布需求</a></li>
+                    <li class="demandList"><a href="/demandList">需求列表</a></li>
 
                 </ul>
 
@@ -31,4 +33,22 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
+    <script type="text/javascript">
+        $(function(){
+            var path = window.location.pathname;
+            console.log(path);
+            if(path=='/activeCheck'){
+                console.log(path)
+                $(".navbar-nav .activeCheck").addClass("active");
+            }else if(path=='/orginseCheck'){
+                $(".navbar-nav .orginseCheck").addClass("active");
+
+            }else if(path=='/demandadd'){
+                $(".navbar-nav .demandadd").addClass("active");
+
+            }else if(path=='/demandList'){
+                $(".navbar-nav .demandList").addClass("active");
+            }
+        });
+    </script>
 </header>
