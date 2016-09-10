@@ -1,12 +1,157 @@
 <extend name="Public/nomenu" />
 
 <block name="main">
-    <div>
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+    <a class="activeApplay" href="/activeApplay">社团活动申请
+    <p class="item-click">
+<i class="fa fa-angle-right" aria-hidden="true"></i>
+</p>
+</a>
+    <div class="main-tab">
+        <ul class="tab">
+            <li class="progress-li checked">进行中</li>
+            <li class="finish-li">已结束</li>
         </ul>
     </div>
+    <div class="progress showdiv">
+        <ul>
+            <li>
+                <h3 class="title">奇迹活动名称</h3>
+                <p class="content">女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦</p>
+                <div class="status"><span>进行中</span><span><a href="#">查看评论</a></span></div>
+            </li>
+            <li>
+                <h3 class="title">奇迹活动名称</h3>
+                <p class="content">女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦</p>
+                <div class="status"><span>进行中</span><span><a href="#">查看评论</a></span></div>
+            </li>
+            <li>
+                <h3 class="title">奇迹活动名称</h3>
+                <p class="content">女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦</p>
+                <div class="status"><span>进行中</span><span><a href="#">查看评论</a></span></div>
+            </li>
+            <li>
+                <h3 class="title">奇迹活动名称</h3>
+                <p class="content">女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦</p>
+                <div class="status"><span>进行中</span><span><a href="#">查看评论</a></span></div>
+            </li>
+        </ul>
+    </div>
+    <div class="finish hiddendiv">
+        <ul>
+            <li>
+                <h3 class="title">奇迹活动名称</h3>
+                <p class="content">女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦</p>
+                <div class="status"><span>已结束</span><span><a href="#">查看评论</a></span></div>
+            </li>
+            <li>
+                <h3 class="title">奇迹活动名称</h3>
+                <p class="content">女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦</p>
+                <div class="status"><span>已结束</span><span><a href="#">查看评论</a></span></div>
+            </li>
+            <li>
+                <h3 class="title">奇迹活动名称</h3>
+                <p class="content">女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦</p>
+                <div class="status"><span>已结束</span><span><a href="#">查看评论</a></span></div>
+            </li>
+            <li>
+                <h3 class="title">奇迹活动名称</h3>
+                <p class="content">女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦女生节,宠爱升级啦</p>
+                <div class="status"><span>已结束</span><span><a href="#">查看评论</a></span></div>
+            </li>
+        </ul>
+    </div>
+    <style type="text/css">
+        .main-tab {
+            width: 100%;
+            height: 0.9rem;
+            line-height: 0.9rem;
+            overflow: hidden;
+        }
+        
+        .tab {
+            width: inherit;
+            height: 0.72rem;
+            line-height: 0.72rem;
+            overflow: hidden;
+            margin-top: 0.18rem;
+        }
+        
+        ul.tab li {
+            display: inline-block;
+            float: left;
+            width: 50%;
+            height: 0.72rem;
+            line-height: 0.72rem;
+            text-align: center;
+            border: 0.018rem solid pink;
+        }
+        
+        .progress,
+        .finish {
+            width: 100%;
+            height: auto;
+        }
+        
+        .progress ul,
+        .finish ul {
+            padding: 0 0.09rem;
+        }
+        
+        .title {
+            margin-top: 0.09rem;
+        }
+        
+        .content {
+            padding-top: 0.09rem;
+            padding-bottom: 0.09rem;
+        }
+        
+        .status >span {
+            margin-right:0.18rem;
+            display: inline-block;
+            border: 0.018rem solid #f7f7f7;
+            background-color: #cacaca;
+            color: #eae5e1;
+            text-align: center;
+            font-size: 0.28rem;
+            padding: 0.09rem;
+        }
+        
+        .checked {
+            background-color: #f22b3e;
+            color: #fff;
+        }
+        
+        .hiddendiv {
+            display: none;
+        }
+        
+        .showdiv {
+            display: block;
+        }
+        .activeApplay{
+    display: block;
+    width: 100%;
+    height: 0.28rem;
+    font-size: 0.43rem;
+    margin-top: 0.18rem;
+}
+.activeApplay p.item-click{
+    float:right;
+}
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            $(".tab li").click(function(){
+                $(this).addClass("checked").siblings().removeClass("checked");
+                if($(this)[0].className.split(" ")[0]=="progress-li"){
+                    $(".progress").addClass("showdiv").removeClass("hiddendiv");
+                    $(".finish").addClass("hiddendiv").removeClass("showdiv");
+                }else if($(this)[0].className.split(" ")[0]=="finish-li"){
+                    $(".finish").addClass("showdiv").removeClass("hiddendiv");
+                    $(".progress").addClass("hiddendiv").removeClass("showdiv");
+                }
+            });
+        });
+    </script>
 </block>

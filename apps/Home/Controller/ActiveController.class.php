@@ -43,6 +43,13 @@ class ActiveController extends BaseController {
         $this->display();
     }
 
+    /**
+     * 评论列表
+     */
+    public function comments(){
+        $this->assign('pageTitle','评论列表');
+        $this->display();
+    }
 
     public function myActivites(){
         $this->assign('pageTitle','我的活动中心');

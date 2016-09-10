@@ -23,6 +23,7 @@ return array(
         'activeApplay'=>'active/activeApplay',
         //活动申请
         'doApplyActivite'=>'active/doApplyActivite',
+        'comments'=>'active/comments',//评论列表
 
         //组织创建申请
         'origiseApply'=>'orignise/origiseApply',
