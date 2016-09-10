@@ -98,7 +98,10 @@ class ChuanglanSmsApi
         curl_setopt ( $ch, CURLOPT_URL, $url );
         curl_setopt ( $ch, CURLOPT_POSTFIELDS, $postFields );
         $result = curl_exec ( $ch );
+        $header_code = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        XLog::logDebug(__CLASS__,__FUNCTION__,$header_code);
         curl_close ( $ch );
+        
         return $result;
     }
 

@@ -25,7 +25,8 @@ return array(
         'doApplyActivite'=>'active/doApplyActivite',
         //组织创建申请
         'origiseApply'=>'user/origiseApply',
-        
+        'doApplyOrgnise'=>'user/doApplyOrgnise',
+
         //ajax请求映射
         'ajaxDoLogin'=>'user/ajaxDoLogin',
         'ajaxIsUserExist'=>'user/ajaxIsUserExist',

@@ -34,11 +34,11 @@ class UserController extends BaseController {
      * 用户中心
      */
     public function me(){
-        // if(empty($_SESSION['userinfo'])){
-        //     $_SESSION['refererUrl']='/me';
-        //     header("location:/login");
-        //     die;
-        // }
+         if(empty($_SESSION['userinfo'])){
+             $_SESSION['refererUrl']='/me';
+             header("location:/login");
+             die;
+         }
         $this->assign('pageTitle','用户中心');
         $this->display();
     }
@@ -53,6 +53,11 @@ class UserController extends BaseController {
      */
     public function origiseApply($id){
         if(empty($id)) return;
+
+        if(empty($_SESSION['userinfo'])){
+            $_SESSION['refererUrl']='/activeApplay';
+            header('location:/login');
+        }
 
         if($id==1){
             $this->assign('pageTitle','社团创建');
@@ -78,15 +83,19 @@ class UserController extends BaseController {
         header('Content-Type:text/html;charset=utf-8');
         $clapi  = new ChuanglanSmsApi();
         $vcode = rand(100000,999999);
-        $msg ="您好，您的验证码是" . $vcode ;
+        $msg ="【北京大创奇迹网络科技有限公司】您好，您的验证码是" . $vcode ;
         $result = $clapi->sendSMS($tel, $msg,'true');
         $result = $clapi->execResult($result);
+        $_SESSION['vcode']=$vcode;//缓存vcode
+        XLog::logDebug(__CLASS__,__FUNCTION__,json_encode($result));
         if(isset($result[1]) && $result[1]==0){
             $this->info['item']['vcode']=$vcode;
-            echo json_encode( $this->info);
         }else{
-            echo "发送失败{$result[1]}";
+            //发送失败
+            $this->info['msg']='error';
+            $this->info['status']=-101;
         }
+        echo json_encode( $this->info);
     }
 
     /**
@@ -103,6 +112,7 @@ class UserController extends BaseController {
         $user = new UserModel();
         $result=$user->where("utel='%s' and upwd='%s'",array($tel,userSha1($keyword)))->getField('uid,uname,utel,utype');
         if(empty($result)){
+            //用户不存在或者密码错误
             $this->info['msg']='error';
             $this->info['status']=-101;
         }else{
@@ -113,6 +123,7 @@ class UserController extends BaseController {
         echo  json_encode($this->info,true);
     }
 
+
     /**
      * 判断用户是否存在
      * @param string $tel
@@ -121,7 +132,6 @@ class UserController extends BaseController {
         if(!IS_GET||empty($tel)) return;
         $user = new UserModel();
         $result=$user->where("utel='%s'",array($tel))->getField('utel');
-
 
         if(empty($result)){
             //用户不存在
@@ -137,6 +147,10 @@ class UserController extends BaseController {
 
     /**
      * 用户注册接口
+     * tel
+     * vcode
+     * keywords
+     * rekeywords
      */
     public function ajaxDoRegister(){
         if(!IS_POST||empty($_POST['tel'])||empty($_POST['vcode'])||empty($_POST['keywords'])||empty($_POST['rekeywords'])){
@@ -147,6 +161,7 @@ class UserController extends BaseController {
         $keywords = (string)$_POST['keywords'];
         $rekeywords = (string)$_POST['rekeywords'];
         if($keywords!=$rekeywords) return;
+        if($_SESSION['vcode']!=$vcode) return;//比对验证码
         $create_time = date('Y-m-d H:i:s',time());
         $utype = 1;//用户类型
         $newUser = array(
@@ -193,6 +208,53 @@ class UserController extends BaseController {
 
         $filename = $_POST['img'];
         $upload = new \Think\Upload();// 实例化上传类
+
+    }
+
+
+    /**
+     * 组织申请
+     */
+    public function doApplyOrgnise(){
+        if(!IS_POST) return;
+
+        $name = $_POST['name'];
+        $tel = $_POST['tel'];
+        $email = $_POST['email'];
+        $og_name = $_POST['og_name'];
+        $file = $_FILES['applyImg'];
+        //数据检查
+        if(empty($name)||empty($email)||empty($og_name)||empty($tel)||empty($file)) return;
+
+        //文件上传配置
+        $config=array(
+            'maxSize'  =>3145728,
+            'exts'=>array('jpg','jpeg','png'),
+            'savePath'=>'./renzhen/',
+            'autoSub'=>true,
+            'subName'=>array('date','Ymd'),
+            'saveName'=>time().'_'.$tel.'_'.urlencode($name),
+        );
+
+        //文件提交
+        $upload = new \Think\Upload($config);
+        $info = $upload->uploadOne($file);
+
+        if(!$info){
+            //上传失败
+            $this->error($upload->getError());
+            die;
+        }
+        //处理,入库
+
+        //用户id
+        $uid = (int)$_SESSION['userinfo']['uid'];
+        //用户类型,用来做用户的活动的类型
+        $utype=(int)$_SESSION['userinfo']['utype'];
+
+
+
+        $this->success("上传成功,我们将会尽快处理,处理结果将会邮件通知你!",'/club',5);
 
     }
 

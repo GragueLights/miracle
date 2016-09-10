@@ -1,5 +1,11 @@
 <extend name="Public/nomenu" />
 
+<block name="src">
+    <link rel="stylesheet" type="text/css" href="__CSS__/ns-default.css" />
+    <link rel="stylesheet" type="text/css" href="__CSS__/ns-style-attached.css" />
+
+</block>
+
 <block name="main">
     <div class="form-wrp page">
         <div class="form">
@@ -9,111 +15,80 @@
 
             <div class="keyword-field field">
                 <input type="password" class="mobile-keywords" id="keywords" placeholder="请输入密码" style="color:#000000">
-
             </div>
             <button class="login-btn submit-btn" onclick="do_login()">登录</button>
             <input type="hidden" id="refererUrl" value="{$refererUrl}">
             <!--<p class="text">点击登录，即表示您同意沃德股市气象站 <a href="/license">用户协议</a>和 <a href="/disclaimer">免责声明</a></p>-->
         </div>
     </div>
-    <script type="text/javascript">
-    $(function(){
-       $("#login_btn").click(function() {
-		if ($("#login-form").valid()) {
-            $("#login-form").submit();
-        }
-		
-	});
-	var validator = $("#login-form").validate({
-			rules: {
-				Mobile: {
-					required: true,
-                    isMobile:true,
-                     remote: {
-                    type: "get",
-                    url: "/ajaxIsUserExist" 
-                }
-				},
-				Pass: {
-					required: true,
-                    rangelength:[6,16]
-				},
-			},
-			messages: {
-				Mobile: {
-					required: '手机号码不能为空',
-                    isMobile:"请正确填写手机号码!",
-                    remote:"该账号不存在!"
-				},
-				Pass: {
-					required: '必填字段',
-                    rangelength:"密码长度在6-16位之间"
-				}
-			},
-			errorPlacement: function(error, element) {
-				error.appendTo(element.parent().next());
-				element.addClass("error_border");
-			},
-			submitHandler: function(form) {
 
-			},
-			success: function(label,element) {
-				label.html("&nbsp;").addClass("checked");
-				$(element).removeClass("error_border");
-			},
-			highlight: function(element, errorClass) {
-				//$(element).parent().next().find("." + errorClass).removeClass("checked");
-				$(element).addClass("error_border");
-			}
-		})
-    });
-    </script>
-    <!--<script>
-        $(document).ready(function () {
-            $("#tel").blur(function(){
-                var tel = $(this).val();
-                if(tel==''){
-                    return;
+    <script src="__JS__/modernizr.custom.js"></script>
+    <script src="__JS__/classie.js"></script>
+    <script src="__JS__/notificationFx.js"></script>
+    <script>
+        (function () {
+            //限制输入数字
+            $('input#tel').keyup(function(){
+                var c=$(this);
+                if(/[^\d]/.test(c.val())){
+                    //替换非数字字符
+                    var temp_amount=c.val().replace(/[^\d]/g,'');
+                    $(this).val(temp_amount);
                 }
-                $.ajax({
-                    url:'/ajaxIsUserExist',
-                    type:'get',
-                    data:{
-                        tel:tel,
-                    },
-                    dataType:'json',
-                    success:function (data) {
-                        console.log(data);
-                    }
-                })
+                //保证11位
+                if(c.val().length>11){
+                    var temp = c.val().substr(0,11);
+                    $(this).val(temp);
+                }
             });
-
-            $("#login-btn").on('click',function (e) {
-                var tel = $('#tel').val();
-                var keyword = $('#keyword').val();
-                $.ajax({
-                    url:'/ajaxDoLogin',
-                    type:'post',
-                    data:{
-                        tel:tel,
-                        keyword:keyword
-                    },
-                    dataType:'json',
-                    success:function (data) {
-                        if(data.status==100){
-                            var refererUrl = $('#refererUrl').val();
-                            alert(refererUrl);
-                            if(refererUrl!=''){
-                                window.location.href=refererUrl;
-                            }else{
-                                window.location.href='/club';
-                            }
-
+        })();
+        /**
+         * 检查电话号码是否正确
+         * @param str
+         * @returns {boolean}
+         */
+        function checkMobile(str) {
+            if (str == "") {
+                return false;
+            } else {
+                var re = /^1\d{10}$/;
+                if (re.test(str)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        
+        function  do_login() {
+            var tel = $('#tel').val();
+            var keyword = $('#keywords').val();
+            if(checkMobile(tel)==false){
+                $('input#tel').focus();
+            }
+            if(keyword.length<6||keyword.length>20){
+                $('input#keywords').focus();
+            }
+            $.ajax({
+                url:'/ajaxDoLogin',
+                type:'post',
+                data:{
+                    tel:tel,
+                    keyword:keyword
+                },
+                dataType:'json',
+                success:function (data) {
+                    if(data.status==100){
+                        var refererUrl = $('#refererUrl').val();
+                        if(refererUrl!=''){
+                            window.location.href=refererUrl;
+                        }else{
+                            window.location.href='/club';
                         }
-                        console.log(data);
                     }
-                })
+                }
             })
-        })
-    </script>-->
+        }
+    </script>
 </block>
+

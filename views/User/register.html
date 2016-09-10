@@ -1,4 +1,9 @@
 <extend name="Public/nomenu" />
+<block name="src">
+    <link rel="stylesheet" type="text/css" href="__CSS__/ns-default.css" />
+    <link rel="stylesheet" type="text/css" href="__CSS__/ns-style-attached.css" />
+
+</block>
 <block name="main">
     <div class="form-wrp page">
         <div class="form">
@@ -17,10 +22,155 @@
             <div class="keyword-field">
                 <input type="password" class="mobile-keywords" id="rekeywords" placeholder="请输入确认密码" style="color:#000000">
             </div>
-            <button class="login-btn submit-btn" onclick="do_login()">登录</button>
+            <button class="login-btn submit-btn" onclick="do_register()">登录</button>
             <input type="hidden" id="refererUrl" value="{$refererUrl}">
             <!--<p class="text">点击登录，即表示您同意沃德股市气象站 <a href="/license">用户协议</a>和 <a href="/disclaimer">免责声明</a></p>-->
         </div>
     </div>
+    <script src="__JS__/modernizr.custom.js"></script>
+    <script src="__JS__/classie.js"></script>
+    <script src="__JS__/notificationFx.js"></script>
+    <script>
+        (function () {
+            $(document).ready(function () {
+                $('input#tel').keyup(function(){
+                    var c=$(this);
+                    if(/[^\d]/.test(c.val())){
+                        //替换非数字字符
+                        var temp_amount=c.val().replace(/[^\d]/g,'');
+                        $(this).val(temp_amount);
+                    }
+                });
+            })
+
+        })();
+
+        var InterValObj; //timer变量，控制时间
+        var count = 60; //间隔函数，1秒执行
+        var curCount; //当前剩余秒数
+        //获取二维码
+        function get_code() {
+            var tel = $('#tel').val();
+            if (checkMobile(tel) == false) {
+                var bttn = $("#get_code");
+                bttn.disabled = true;
+                $('.ns-box').remove();
+                var notification = new NotificationFx({
+                    message: '<p>请输入正确的手机号</p>',
+                    layout: 'attached',
+                    effect: 'flip',
+                    type: 'error', // notice, warning, error or success
+                    ttl: '10000',
+                    onClose: function() {
+                        bttn.disabled = false;
+                    }
+                });
+                notification.show();
+            } else {
+                curCount = count;
+                $("#get_code").attr("disabled", "true");
+                $('#get_code').css({
+                    'background': '#ccc',
+                    'color': '#fff'
+                });
+                $("#get_code").val(curCount + "s后重新获取");
+                InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/ajaxGetCode',
+                    data: {
+                        tel: tel
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        if (data.status == 100) {
+                            $('#code').focus();
+                        } else {
+                            //alert(data.msg);
+                            $('.ns-box').remove();
+                            var notification = new NotificationFx({
+                                message: '<p>' + data.msg + '</p>',
+                                layout: 'attached',
+                                effect: 'flip',
+                                type: 'error', // notice, warning, error or success
+                                ttl: '10000'
+                            });
+                            notification.show();
+                        }
+                    },
+                    dataType: 'json'
+                });
+            }
+
+        }
+        //timer处理函数
+        function SetRemainTime() {
+            if (curCount == 0) {
+                window.clearInterval(InterValObj); //停止计时器
+                $("#get_code").removeAttr("disabled"); //启用按钮
+                $("#get_code").text("获取验证码");
+            } else {
+                curCount--;
+                $("#get_code").text(curCount + "s后重试");
+            }
+        }
+
+        function checkMobile(str) {
+            if (str == "") {
+                return false;
+            } else {
+                var re = /^1\d{10}$/
+                if (re.test(str)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        function getDeviceType() {
+            var userAgentInfo = navigator.userAgent;
+            var Agents = new Array("Android", "iPhone");
+            var deviceType = 3;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    deviceType = v;
+                    break;
+                }
+            }
+            return deviceType;
+        }
+
+        function do_register() {
+            var tel = $('#tel').val();
+            var code = $('#code').val();
+            var refererurl = $("#refererUrl").val();
+            $.ajax({
+                type: 'POST',
+                url: '/ajaxDoRegister',
+                dataType: 'json',
+                data: {
+                    tel: tel,
+                    code: code,
+                },
+                success: function(data) {
+                    if (data != null) {
+                        window.location.href = '/club';
+                    } else {
+                        $('.ns-box').remove();
+                        var notification = new NotificationFx({
+                            message: '<p>登陆失败</p>',
+                            layout: 'attached',
+                            effect: 'flip',
+                            type: 'error', // notice, warning, error or success
+                            ttl: '6000'
+                        });
+                        notification.show();
+                    }
+                },
+            });
+        }
+    </script>
 
 </block>
