@@ -14,15 +14,21 @@ class ActiveController extends BaseController {
      */
     public function activeApplay(){
         
-//        if(empty($_SESSION['userinfo'])){
-//            $_SESSION['refererUrl']='/activeApplay';
-//            header('location:/login');
-//        }else{
-//            if($_SESSION['userinfo']['utype']==1){
-//                //普通用户
-//
-//            }
-//        }
+        if(empty($_SESSION['userinfo'])){
+            $_SESSION['refererUrl']='/activeApplay';
+            header('location:/login');
+        }else{
+            if($_SESSION['userinfo']['utype']==1){
+                //普通用户
+                header('location:/club');
+            }else if($_SESSION['userinfo']['utype']==2){
+                //社团用户
+
+            }else if($_SESSION['userinfo']['utype']==3){
+                //企业用户
+                
+            }
+        }
         $this->assign('pageTitle','活动申请');
         $this->display();
     }

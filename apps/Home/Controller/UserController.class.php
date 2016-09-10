@@ -41,6 +41,25 @@ class UserController extends BaseController {
              header("location:/login");
              die;
          }
+
+        //用户类型
+        $utype = $_SESSION['userinfo']['utype'];
+        $typeContent = '我的';
+        switch ($utype){
+            case 1://普通用户
+
+                break;
+            case 2://社团用户
+                $typeContent = '社团';
+
+                break;
+            case 3://企业用户
+                $typeContent = '企业';
+                break;
+            default:
+                break;
+        }
+        $this->assign('typeContent',$typeContent);
         $this->assign('pageTitle','用户中心');
         $this->display();
     }
