@@ -22,6 +22,8 @@ CREATE TABLE `micro_user` (
 --de9789254b9f6fd0854aed48abb587633555a0c9
 --测试数据
 INSERT INTO `micro_user` (`utel`,`uname`,`upwd`,`utype`,`create_time`,`update_time`) VALUES('18811708041','许小平','de9789254b9f6fd0854aed48abb587633555a0c9',1,'2016-09-04 10:00:00','2016-09-04 10:00:00');
+INSERT INTO `micro_user` (`utel`,`uname`,`upwd`,`utype`,`create_time`,`update_time`) VALUES('18811708042','许小平','de9789254b9f6fd0854aed48abb587633555a0c9',2,'2016-09-04 10:00:00','2016-09-04 10:00:00');
+INSERT INTO `micro_user` (`utel`,`uname`,`upwd`,`utype`,`create_time`,`update_time`) VALUES('18811708043','许小平','de9789254b9f6fd0854aed48abb587633555a0c9',3,'2016-09-04 10:00:00','2016-09-04 10:00:00');
 
 
 --
