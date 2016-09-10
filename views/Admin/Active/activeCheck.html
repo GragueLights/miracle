@@ -87,6 +87,16 @@
     </style>
     <script>
         (function () {
+            //获取所有的数据
+            $.ajax({
+                url:'/ajaxGetAllActivitiesApply',
+                type:"get",
+                dataType:'json',
+                success:function (data) {
+                    console.log(data)
+                }
+            });
+
             $('#btn-search').on('click',function (e) {
                 var type = $('#type option:selected').val();
                 var status = $('#status option:selected').val();
@@ -94,9 +104,10 @@
                 var timeOptionValue = $('#time option:selected').val();
 
                 if(type==''&&status==''&&timeOptionValue=='0') return;
-                console.log('type=='+type)
-                console.log('status=='+status)
-                console.log('time=='+time)
+
+//                console.log('type=='+type)
+//                console.log('status=='+status)
+//                console.log('time=='+time)
                 $.ajax({
                     url:'/ajaxGetAllActivitiesApply',
                     type:"get",

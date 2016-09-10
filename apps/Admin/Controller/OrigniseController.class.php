@@ -29,7 +29,11 @@ class OrigniseController extends Controller {
             $map['create_time'] =  array('like',$time.'%');;
         }
         $applys = new OrginiseApplyModel();
-        $result = $applys->where($map)->find();
+        if(isset($map)){
+            $result = $applys->select();
+        }else{
+            $result = $applys->where($map)->find();
+        }
         $this->info['item']=$result;
         echo json_encode($this->info);
     }

@@ -53,7 +53,7 @@ class ActiveController extends BaseController {
         $type = $_GET['type'];//查询类型
         $status = $_GET['status'];//查询状态
         $time= $_GET['time'];
-        $map = [];
+
         if(!empty($type)){
             $map['type'] = (int)$type;//1,社团,2,企业
         }
@@ -64,7 +64,11 @@ class ActiveController extends BaseController {
             $map['create_time'] =  array('like',$time.'%');;
         }
         $applys = new ActivitiesApplyModel();
-        $result = $applys->where($map)->find();
+        if(isset($map)){
+            $result = $applys->select();
+        }else{
+            $result = $applys->where($map)->find();
+        }
         $this->info['item']=$result;
         echo json_encode($this->info);
 
