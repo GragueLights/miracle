@@ -30,6 +30,8 @@ class UserController extends BaseController {
         $this->assign('pageTitle','用户注册');
         $this->display();
     }
+
+
     /**
      * 用户中心
      */
@@ -43,34 +45,9 @@ class UserController extends BaseController {
         $this->display();
     }
 
-    /**
-     * 组织申请页面
-     */
-    /**
-     * @param $id 社团或者企业标志
-     * 1,创建社团
-     * 2,创建企业
-     */
-    public function origiseApply($id){
-        if(empty($id)) return;
+   
 
-        if(empty($_SESSION['userinfo'])){
-            $_SESSION['refererUrl']='/activeApplay';
-            header('location:/login');
-        }
-
-        if($id==1){
-            $this->assign('pageTitle','社团创建');
-        }else if($id==2){
-            $this->assign('pageTitle','企业创建');
-        }else{
-            header('location:/me');
-            return ;
-        }
-        $this->display();
-    }
-
-
+    
 
 
     /**
@@ -109,16 +86,25 @@ class UserController extends BaseController {
             return;
         }
         $user = new UserModel();
-        $result=$user->where("utel='%s' and upwd='%s'",array($tel,userSha1($keyword)))->getField('uid,uname,utel,utype');
-        if(empty($result)){
-            //用户不存在或者密码错误
-            $this->info['msg']='error';
-            $this->info['status']=-101;
-        }else{
-            $this->info['item']=$result;
-            //缓存用户信息
-            $_SESSION['userinfo']=$result;
+
+        $result = $user->where("utel=%s",array($tel))->find();
+        if(!empty($result)){
+            /* 验证用户密码 */
+            if(userSha1($keyword)===$result['upwd']){
+                $map['uid']=$result['uid'];
+                $map['uname']=$result['uname'];
+                $map['utel']=$result['utel'];
+                $map['utype']=$result['utype'];
+                $this->info['item']=$map;
+                //缓存用户信息
+                $_SESSION['userinfo']=$map;
+            }else{
+                //用户不存在或者密码错误
+                $this->info['msg']='error';
+                $this->info['status']=-101;
+            }
         }
+
         echo  json_encode($this->info,true);
     }
 
@@ -185,77 +171,7 @@ class UserController extends BaseController {
     }
     
 
-    /**
-     * 创建社团接口
-     * 需要的数据,用户id,用户名称,认证资料的图片
-     * tel ,eamil,组织名称,创建类型1,2
-     */
-    public function ajaxCreateOrginse(){
-        if(!IS_POST) return;
-
-
-        $tel = $_POST['tel'];
-        $email = $_POST['email'];
-        $name = $_POST['name'];//用户名
-        $orginseName = $_POST['orgniseName'];
-        $id = $_POST['id'];
-        $orginseType=$_POST['orginseType'];
-
-        if(empty($tel)||empty($email)||empty($name)||empty($orginseName)||empty($id)||empty($orginseType)){
-            return;
-        }
-
-        $filename = $_POST['img'];
-        $upload = new \Think\Upload();// 实例化上传类
-
-    }
-
-
-    /**
-     * 组织申请
-     */
-    public function doApplyOrgnise(){
-        if(!IS_POST) return;
-
-        $name = $_POST['name'];
-        $tel = $_POST['tel'];
-        $email = $_POST['email'];
-        $og_name = $_POST['og_name'];
-        $file = $_FILES['applyImg'];
-        //数据检查
-        if(empty($name)||empty($email)||empty($og_name)||empty($tel)||empty($file)) return;
-
-        //文件上传配置
-        $config=array(
-            'maxSize'  =>3145728,
-            'exts'=>array('jpg','jpeg','png'),
-            'savePath'=>'./renzhen/',
-            'autoSub'=>true,
-            'subName'=>array('date','Ymd'),
-            'saveName'=>time().'_'.$tel.'_'.urlencode($name),
-        );
-
-        //文件提交
-        $upload = new \Think\Upload($config);
-        $info = $upload->uploadOne($file);
-
-        if(!$info){
-            //上传失败
-            $this->error($upload->getError());
-            die;
-        }
-        //处理,入库
-
-        //用户id
-        $uid = (int)$_SESSION['userinfo']['uid'];
-        //用户类型,用来做用户的活动的类型
-        $utype=(int)$_SESSION['userinfo']['utype'];
-
-
-
-        $this->success("上传成功,我们将会尽快处理,处理结果将会邮件通知你!",'/club',5);
-
-    }
+    
 
     
 }

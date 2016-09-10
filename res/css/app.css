@@ -354,10 +354,8 @@ body {
         font-size: 14px;
         height: 20px;
         width: 160px;
-        overflow: hidden;
-        margin-top: 5px; }
+        overflow: hidden; }
       .ul-wrp .list-item .list_center .ul_start {
-        margin-top: 5px;
         margin-bottom: 5px;
         display: inline-block; }
         .ul-wrp .list-item .list_center .ul_start li.start {

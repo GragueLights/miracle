@@ -27,8 +27,20 @@ class ActiveController extends BaseController {
         $this->display();
     }
 
+    /**
+     * 活动详情
+     * @param $id //活动的唯一id
+     */
+    public function activeInfo($id){
+        $this->assign('pageTitle','活动详情');
+        $this->display();
+    }
 
 
+    public function myActivites(){
+        $this->assign('pageTitle','我的活动中心');
+        $this->display();
+    }
 
     /**
      * 获取活动历史记录

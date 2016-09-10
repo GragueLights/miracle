@@ -23,15 +23,25 @@ return array(
         'activeApplay'=>'active/activeApplay',
         //活动申请
         'doApplyActivite'=>'active/doApplyActivite',
+
         //组织创建申请
-        'origiseApply'=>'user/origiseApply',
-        'doApplyOrgnise'=>'user/doApplyOrgnise',
+        'origiseApply'=>'orignise/origiseApply',
+        'myOrignise'=>'orignise/myOrignise',
+        'addOrignise'=>'orignise/addOrignise',
+
+        //组织api
+        'doApplyOrgnise'=>'orignise/doApplyOrgnise',
+
+        'myActivites'=>'active/myActivites',
+        'activeInfo'=>'active/activeInfo',
 
         //ajax请求映射
         'ajaxDoLogin'=>'user/ajaxDoLogin',
         'ajaxIsUserExist'=>'user/ajaxIsUserExist',
         'ajaxGetCode'=>'user/ajaxGetCode',
         'ajaxDoRegister'=>'user/ajaxDoRegister',
+
+
 
         //后台页面
         'activeCheck'=>'admin/Active/activeCheck',

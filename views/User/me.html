@@ -8,54 +8,62 @@
             <img src="./upload/userimg/1.jpg">
             <p class="userName">18811708041</p>
         </div>
-    </div>
-    <div class="origiseCreate">
-        <a style="background-color: #FF0000">创建社团</a>
-        <a style="background-color: #4e8455">创建企业</a>
-    </div>
+
+
     <div class="funs-wrp">
         <ul>
             <li class="funs-item">
-                <a>
+                <a href="/myOrignise">
                     <p>我的组织</p>
+                    <p class="item-click"><i class="fa fa-angle-right" aria-hidden="true"></i></p>
                 </a>
             </li>
             <li class="funs-item">
-                <a>
+                <a href="/myActivites">
                     <p>我的活动</p>
+                    <p class="item-click"><i class="fa fa-angle-right" aria-hidden="true"></i></p>
+
                 </a>
             </li>
             <li class="funs-item">
                 <a>
                     <p>我的积分</p>
+                    <p class="item-click"><i class="fa fa-angle-right" aria-hidden="true"></i></p>
+
                 </a>
             </li>
             <li class="funs-item">
                 <a>
                     <p>用户需知</p>
+                    <p class="item-click"><i class="fa fa-angle-right" aria-hidden="true"></i></p>
+
                 </a>
             </li>
         </ul>
     </div>
+    </div>
     <include file="Public/menu"/>
 </div>
 <style>
-    .origiseCreate a{
-        display: block;
-        width: 50%;
-        height: 2rem;
-        line-height: 2rem;
-        font-size: .4rem;
-        text-align: center;
-        float: left;
-        color: #FFFFFF;
-    }
+
     .funs-wrp{
     }
     .funs-item{
-        padding: .2rem;
+
         border-bottom: 1px solid #EEEEEE;
         font-size: .4rem;
+        height: 1rem;
+        line-height: 1rem;
+        padding-left: .2rem;
+        padding-right: .2rem;
+    }
+    .funs-item p{
+        width: 50%;
+        float: left;
+    }
+    .item-click{
+        float: right;
+        text-align: right;
     }
 
     .user-img{
