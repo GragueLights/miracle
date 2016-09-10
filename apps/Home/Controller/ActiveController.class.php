@@ -100,8 +100,7 @@ class ActiveController extends BaseController {
 
 
         $this->success("上传成功,我们将会尽快处理,处理结果将会邮件通知你!",'/club',5);
-
-
+        
     }
 
 

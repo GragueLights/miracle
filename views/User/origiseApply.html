@@ -3,7 +3,7 @@
 <block name="main">
     <div class="form-wrp page">
 
-        <form class="form" method="post" action="/doApplyActivite" enctype="multipart/form-data">
+        <form class="form" method="post" action="/doApplyOrgnise" enctype="multipart/form-data">
             <div class="field">
                 <input type="text" class="" id="name" name="name" placeholder="请输入您的姓名,必填" style="color:#000000">
             </div>
@@ -14,12 +14,14 @@
                 <input type="email" class="" id="email" name="email" style="color:#000000" placeholder="请输入您的邮箱,必填">
             </div>
             <div class="field">
-                <input type="text" class="" id="og_name" name="og_name" style="color:#000000; " placeholder="社团名称">
+                <input type="text" class="" id="og_name" name="og_name" style="color:#000000; " placeholder="请输入您的社团名称,必填">
             </div>
             <div class="field">
-                <input type="file" class="" id="file" name="applyFile" style="color:#000000;padding: 0" value="浏览">
+                <input type="file" class="" id="file" name="applyImg" style="color:#000000;padding: 0" value="浏览">
             </div>
-
+            <div class="field">
+               <p style="color: #d43f3a">请上传社团资格证明图片,支持png,jpg或者jpeg格式</p>
+            </div>
             <button class="submit-btn" onclick="">提交</button>
             <!--<p class="text">点击登录，即表示您同意沃德股市气象站 <a href="/license">用户协议</a>和 <a href="/disclaimer">免责声明</a></p>-->
         </form>
