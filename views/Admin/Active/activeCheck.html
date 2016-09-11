@@ -15,55 +15,24 @@
         </select>
         <select  id="time" >
             <option value="0">请选择日期</option>
-            <option value="1">2016-09-10</option>
-            <option value="2">2016-09-11</option>
-            <option value="3">2016-09-12</option>
-            <option value="4">2016-09-13</option>
-            <option value="5">2016-09-14</option>
-            <option value="6">2016-09-15</option>
-            <option value="7">2016-09-16</option>
         </select><button class="btn btn-default" id="btn-search">查询</button>
     </div>
     <div class="table-container">
-        <table class="table table-bordered table-hover">
+        <table id="active-table" class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th  data-name="name" style="text-align:center;">发布人</th>
                     <th  data-name="tel" style="text-align:center;">联系方式</th>
                     <th data-name="email" style="text-align:center;">邮箱</th>
                     <th data-name="createtime" style="text-align:center;">创建时间</th>
-                     <th  data-name="status" style="text-align:center;">状态</th>
+                    <th  data-name="status" style="text-align:center;">状态</th>
+                    <th  data-name="end_time" style="text-align:center;">审核时间</th>
+                    <th  data-name="material" style="text-align:center;">审核资料</th>
+                    <th style='text-align:center;'>操作</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td style="text-align:center;">奇迹</td>
-                    <td style="text-align:center;">13717174737</td>
-                     <td style="text-align:center;">13717174737@163.com</td>
-                     <td style="text-align:center;">2016-09-17</td>
-                    <td style="text-align:center;">正在进行中</td>
-                </tr>
-                <tr>
-                    <td style="text-align:center;">奇迹</td>
-                    <td style="text-align:center;">13717174737</td>
-                     <td style="text-align:center;">13717174737@163.com</td>
-                     <td style="text-align:center;">2016-09-17</td>
-                    <td style="text-align:center;">正在进行中</td>
-                </tr>
-                 <tr>
-                    <td style="text-align:center;">奇迹</td>
-                    <td style="text-align:center;">13717174737</td>
-                     <td style="text-align:center;">13717174737@163.com</td>
-                     <td style="text-align:center;">2016-09-17</td>
-                    <td style="text-align:center;">正在进行中</td>
-                </tr>
-                 <tr>
-                    <td style="text-align:center;">奇迹</td>
-                    <td style="text-align:center;">13717174737</td>
-                     <td style="text-align:center;">13717174737@163.com</td>
-                     <td style="text-align:center;">2016-09-17</td>
-                    <td style="text-align:center;">正在进行中</td>
-                </tr>
+               
             </tbody>
         </table>
     </div>
@@ -86,7 +55,45 @@
         }
     </style>
     <script>
+     function unique(arr) {
+        var result = [], hash = {};
+        for (var i = 0, elem; (elem = arr[i]) != null; i++) {
+            if (!hash[elem]) {
+                result.push(elem);
+                hash[elem] = true;
+            }
+        }
+        return result;
+    }
+
         (function () {
+            var $data;
+            // var myDate = new Date(); //获取今天日期
+			// 	myDate.setDate(myDate.getDate() - 10);
+			// 	var dateArray = [];
+			// 	var dateTemp;
+			// 	var flag = 1;
+			// 	for(var i = 0; i < 10; i++) {
+			// 		dateTemp = myDate.getFullYear()+"-"+("0"+(myDate.getMonth() + 1)) + "-" + myDate.getDate();
+			// 		dateArray.push(dateTemp);
+			// 		myDate.setDate(myDate.getDate() + flag);
+			// 	}
+            //     for(var dates in dateArray){
+            //         $("#time").append("<option>"+dateArray[dates]+"</option>");
+            //     }
+//             Array.prototype.unique2 = function()
+// {
+// 	var n = {},r=[]; //n为hash表，r为临时数组
+// 	for(var i = 0; i < this.length; i++) //遍历当前数组
+// 	{
+// 		if (!n[this[i]]) //如果hash表中没有当前项
+// 		{
+// 			n[this[i]] = true; //存入hash表
+// 			r.push(this[i]); //把当前数组的当前项push到临时数组里面
+// 		}
+// 	}
+// 	return r;
+// }
             //获取所有的数据
             $.ajax({
                 url:'/ajaxGetAllActivitiesApply',
@@ -94,6 +101,8 @@
                 dataType:'json',
                 success:function (data) {
                     console.log(data)
+                    $data=data;
+                    tableList($data);
                 }
             });
 
@@ -119,12 +128,37 @@
                     dataType:'json',
                     success:function (data) {
                         console.log(data)
+                        $data=data;
+                        tableList($data);
                     }
                 })
             })
         })();
-        function tableList() {
-
+        function tableList($data) {
+            console.log($data);
+            var datearray=new Array(10);
+            var html="";
+            for(var i in $data.item){
+                datearray.push($data.item[i].create_time.substr(0,10));
+                html+="<tr>"
+                    +"<td style='text-align:center;'>"+$data.item[i].name+"</td>"
+                    +"<td style='text-align:center;'>"+$data.item[i].tel+"</td>"
+                    +"<td style='text-align:center;'>"+$data.item[i].email+"</td>"
+                    +"<td style='text-align:center;'>"+$data.item[i].create_time+"</td>"
+                    +"<td style='text-align:center;'>"+$data.item[i].status+"</td>"
+                    +"<td style='text-align:center;'>"+$data.item[i].end_time+"</td>"
+                    +"<td><a target='_bank' href="+$data.item[i].material+">审核资料</a></td>"
+                     +"<td style='text-align:center;'>操作</td>"
+                +"</tr>";
+            }
+            var reult = unique(datearray);
+            console.log(reult+'jkhj');
+            $("#active-table tbody").empty();
+            if(html !=""){
+            $("#active-table tbody").html(html);
+            }else{
+               $("#active-table tbody").html("<tr><td colspan='8' style='text-align:center;'>抱歉暂时没有数据!</td></tr>"); 
+            }
         }
 
     </script>
