@@ -64,10 +64,10 @@ class ActiveController extends BaseController {
             $map['create_time'] =  array('like',$time.'%');;
         }
         $applys = new ActivitiesApplyModel();
-        if(isset($map)){
+        if(!isset($map)){
             $result = $applys->select();
         }else{
-            $result = $applys->where($map)->find();
+            $result = $applys->where($map)->select();
         }
         $this->info['item']=$result;
         echo json_encode($this->info);
