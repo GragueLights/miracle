@@ -6,7 +6,7 @@ use Think\Controller;
 class OrigniseController extends Controller {
 
     //返回消息模板
-    public $info=['msg'=>'ok','status'=>100,'item'=>''];
+    public $info=['msg'=>'ok','status'=>100,'item'=>[]];
 
     /**
      * 获取组织申请数据
@@ -29,11 +29,12 @@ class OrigniseController extends Controller {
             $map['create_time'] =  array('like',$time.'%');;
         }
         $applys = new OrginiseApplyModel();
-        if(isset($map)){
+        if(!isset($map)){
             $result = $applys->select();
         }else{
-            $result = $applys->where($map)->find();
+            $result = $applys->where($map)->select();
         }
+        // array_push($this->info['item'],$result);
         $this->info['item']=$result;
         echo json_encode($this->info);
     }
