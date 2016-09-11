@@ -1,109 +1,87 @@
-<extend name="Public/layout"/>
+<extend name="Public/layout" />
 <block name="body">
     <h2>组织申请审核</h2>
-     <div class="container">
+    <div class="container">
         <select id="type">
             <option value="">请选择</option>
             <option value="1">社团申请</option>
             <option value="2">企业申请</option>
         </select>
-        <select id="status" name="status" >
+        <select id="status" name="status">
             <option value="">审核状态</option>
             <option value="1">未审核</option>
             <option value="2">已审核</option>
             <option value="3">未通过</option>
         </select>
-        <select  id="time" name="time" >
+        <select id="time" name="time">
             <option value="0">请选择日期</option>
-            <option value="1">2016-09-10</option>
-            <option value="2">2016-09-11</option>
-            <option value="3">2016-09-12</option>
-            <option value="4">2016-09-13</option>
-            <option value="5">2016-09-14</option>
-            <option value="6">2016-09-15</option>
-            <option value="7">2016-09-16</option>
         </select><button class="btn btn-default" id="btn-search">查询</button>
     </div>
     <div class="table-container">
-        <table class="table table-bordered table-hover">
+        <table id="orginseCheck" class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th  data-name="name" style="text-align: center;">发布人</th>
-                    <th  data-name="tel" style="text-align: center;">联系电话</th>
-                    <th  data-name="email"  style="text-align: center;">邮箱</th>
-                    <th  data-name="ogname"  style="text-align: center;">组织名称</th>
-                    <th  data-name="type"  style="text-align: center;">组织类型</th>
-                    <th  data-name="createtime"  style="text-align: center;">创建时间</th>
-                    <th  data-name="status"  style="text-align: center;">状态</th>
+                    <th data-name="name" style="text-align: center;">申布人</th>
+                    <th data-name="tel" style="text-align: center;">联系电话</th>
+                    <th data-name="email" style="text-align: center;">邮箱</th>
+                    <th data-name="ogname" style="text-align: center;">组织名称</th>
+                    <th data-name="createtime" style="text-align: center;">创建时间</th>
+                    <th data-name="type" style="text-align: center;">组织类型</th>                   
+                    <th data-name="status" style="text-align: center;">状态</th>
+                    <th>操作</th>
                 </tr>
             </thead>
             <tbody class="tableList">
-                <tr>
-                    <td style="text-align: center;">奇迹</td>
-                    <td style="text-align: center;">13717171717</td>
-                    <td style="text-align: center;">13717171717@qq.com</td>
-                    <td style="text-align: center;">奇迹赞助</td>
-                    <td style="text-align: center;">企业</td>
-                    <td style="text-align: center;">2016-09-09</td>
-                    <td style="text-align: center;">正在进行中</td>
-                </tr>
-               <tr>
-                    <td style="text-align: center;">奇迹</td>
-                    <td style="text-align: center;">13717171717</td>
-                    <td style="text-align: center;">13717171717@qq.com</td>
-                    <td style="text-align: center;">奇迹赞助</td>
-                    <td style="text-align: center;">企业</td>
-                    <td style="text-align: center;">2016-09-09</td>
-                    <td style="text-align: center;">正在进行中</td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;">奇迹</td>
-                    <td style="text-align: center;">13717171717</td>
-                    <td style="text-align: center;">13717171717@qq.com</td>
-                    <td style="text-align: center;">奇迹赞助</td>
-                    <td style="text-align: center;">企业</td>
-                    <td style="text-align: center;">2016-09-09</td>
-                    <td style="text-align: center;">正在进行中</td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;">奇迹</td>
-                    <td style="text-align: center;">13717171717</td>
-                    <td style="text-align: center;">13717171717@qq.com</td>
-                    <td style="text-align: center;">奇迹赞助</td>
-                    <td style="text-align: center;">企业</td>
-                    <td style="text-align: center;">2016-09-09</td>
-                    <td style="text-align: center;">正在进行中</td>
-                </tr>
+           
             </tbody>
         </table>
     </div>
     <style type="text/css">
-        .container{
-            margin:0;
-            padding:5px;
+        .container {
+            margin: 0;
+            padding: 5px;
         }
-        .container select{
-            width:100px;
-            height:40px;
-            text-align-last:center;
+        
+        .container select {
+            width: 100px;
+            height: 40px;
+            text-align-last: center;
         }
-        .table-container{
-            padding:5px;
+        
+        .table-container {
+            padding: 5px;
         }
-        h2{
-            margin-top:0px;
-            padding-left:5px;
+        
+        h2 {
+            margin-top: 0px;
+            padding-left: 5px;
         }
     </style>
     <script>
         (function () {
+            var $data;
+            var myDate = new Date(); //获取今天日期
+				myDate.setDate(myDate.getDate() - 10);
+				var dateArray = [];
+				var dateTemp;
+				var flag = 1;
+				for(var i = 0; i < 10; i++) {
+					dateTemp = myDate.getFullYear()+"-"+(0+myDate.getMonth() + 1) + "-" + myDate.getDate();
+					dateArray.push(dateTemp);
+					myDate.setDate(myDate.getDate() + flag);
+				}
+                for(var dates in dateArray){
+                    $("#time").append("<option>"+dateArray[dates]+"</option>");
+                }
             //获取所有的数据
             $.ajax({
                 url:'/ajaxGetAllOrigniseApply',
                 type:"get",
                 dataType:'json',
                 success:function (data) {
-                    console.log(data)
+                    console.log(data);
+                    $data=data;
+                    tableList($data);
                 }
             });
             $('#btn-search').on('click',function (e) {
@@ -122,13 +100,45 @@
                     },
                     dataType:'json',
                     success:function (data) {
-                        console.log(data)
+                    console.log(data);
+                        
+                        $data=data;
+                        
+                        tableList($data);
                     }
                 })
             })
         })();
-        function tableList() {
-
+        function tableList($data) {
+            var html='';
+            console.log($data);             
+            $.each($data.item,function(i,e){
+                html+="<tr>"
+                +"<td>"+e.name+"</td>"
+                +"<td>"+e.tel+"</td>"
+                +"<td>"+e.email+"</td>"
+                +"<td>"+e.ogname+"</td>"
+                +"<td>"+e.create_time+"</td>"
+                +"<td>"+(e.type==1 ? "社团" : "企业")+"</td>";
+                if(e.status==1){
+                    html+="<td>未审核</td>";
+                }else if(e.status==2){
+                    html+="<td>通过</td>";
+                }else if(e.status==3){
+                     html+="<td>未通过</td>";
+                }
+                if(e.status==1){
+                    html+='<td><a style="">通过</a><a>不通过</a></td>'
+                }else{
+                    html+="<td><a>通过</a><a>不通过</a></td>"
+                }
+                
+                html+="</tr>";
+            });
+             $("#orginseCheck tbody").empty();
+            $("#orginseCheck tbody").html(html);
+            
+           
         }
 
     </script>
